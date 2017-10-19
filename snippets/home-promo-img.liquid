@@ -1,0 +1,7 @@
+<section class="border-top section feature-section">
+  <div class="container fullwidth-image">
+    {% if settings.homepage_ad_url != blank %}<a href="{{ settings.homepage_ad_url }}">{% endif %}
+    <img src="{{ 'homepage_ad.jpg' | asset_url }}" alt="{{ settings.homepage_ad_alt | escape }}"/>
+    {% if settings.homepage_ad_url != blank %}</a>{% endif %}
+  </div>
+</section>

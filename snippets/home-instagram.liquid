@@ -1,0 +1,9 @@
+<section class="border-top section instagram-section">
+  <div class="container">
+    <div class="opposing-items">
+      <h1 class="section-heading left">Instagram</h1>
+      {% if settings.homepage_insta_acct != blank %}<span class="follow">{{ 'home_page.instagram.follow' | t }} <a href="https://instagram.com/{{ settings.homepage_insta_acct | remove: '@' }}" class="hash-link">@{{ settings.homepage_insta_acct | remove: '@' }}</a></span>{% endif %}
+    </div>
+    <div class="willstagram" data-user_id="self" data-count="7" data-access_token="{{ settings.homepage_insta_acct_access_token }}"></div>
+  </div>
+</section>

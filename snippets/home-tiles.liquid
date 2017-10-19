@@ -1,0 +1,32 @@
+{% assign img_tiles_html = '' %}
+{% for i in (1..10) %}
+{% capture show_idx %}homepage_feat_img_{{i}}_show{% endcapture %}
+{% capture filename %}homepage_feat_img_{{i}}.jpg{% endcapture %}
+{% capture alt_idx %}homepage_feat_img_{{i}}_alt{% endcapture %}
+{% capture url_idx %}homepage_feat_img_{{i}}_url{% endcapture %}
+{% capture overlay_idx %}homepage_feat_img_{{i}}_overlay{% endcapture %}
+{% if settings[show_idx] %}
+{% capture img_tiles_html %}{{ img_tiles_html }}
+<div class="tile">
+  {% if settings[url_idx] != empty %}<a href="{{ settings[url_idx] | escape }}">{% endif %}
+  <img src="{{ filename | asset_url }}" alt="{{ settings[alt_idx] | escape }}" />
+  {% if settings[overlay_idx] != blank %}
+  <div class="overlay">
+    <div class="inner">
+      {{ settings[overlay_idx] }}
+    </div>
+  </div>
+  {% endif %}
+  {% if settings[url_idx] != empty %}</a>{% endif %}
+</div>
+{% endcapture %}
+{% endif %}
+{% endfor %}
+
+<section class="border-top section tile-section">
+  <div class="container">
+    <div class="tile-group">
+      {{ img_tiles_html }}
+    </div>
+  </div>
+</section>

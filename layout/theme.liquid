@@ -1,0 +1,197 @@
+<!doctype html>
+<!--[if IE 8]><html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if IE 9]><html class="no-js ie9" lang="en"> <![endif]-->
+<!--[if (gt IE 10)|!(IE)]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+{% if product.metafields.inventory.ShappifyHidden == "true" %} <meta name="robots" content="noindex"> {% endif %}
+<head>
+  <meta name="google-site-verification" content="pjomuuBcYF3lLkaHzkw675VlP_WJyovfCUBfAyZ6GCU" />
+  <!-- Canopy v1.2.6 -->
+  <meta charset="utf-8" />
+  <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1' /><![endif]-->
+
+  <meta name="msvalidate.01" content="745F9E03AE05B9874088454E6798028F" />
+  
+  <meta name="google-site-verification" content="BpXLzIDFFjIW3OS3RZXotN10e2dz1-Zz7Is4kyLcNPE" />
+  <title>
+  {{ page_title }}{% if current_tags %} &ndash; {{ 'general.meta.tagged' | t }} "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t }} {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+  </title>
+
+  {% if page_description %}
+  <meta name="description" content="{{ page_description | escape }}" />
+  {% endif %}
+
+  <meta name="p:domain_verify" content="6a9070a4bb7170a9421e1ee3720f6e1a"/>
+  <script type="text/javascript">
+  !function(e){if(!window.pintrk){window.pintrk=function(){window.pintrk.queue.push(Array.prototype.slice.call(arguments))};var n=window.pintrk;n.queue=[],n.version="3.0";var t=document.createElement("script");t.async=!0,t.src=e;var r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(t,r)}}("https://s.pinimg.com/ct/core.js");
+
+  pintrk('load','2619891382220');
+  pintrk('page', {
+  page_name: '{{ page_title }}',
+  page_category: 'Website page view'
+  });
+  </script>
+  <noscript>
+  <img height="1" width="1" style="display:none;" alt=""
+  src="https://ct.pinterest.com/v3/?tid=2619891382220&noscript=1" />
+  </noscript>
+
+  <meta name="viewport" content="width=device-width, user-scalable=no" />
+
+  <link rel="canonical" href="{{ canonical_url }}" />
+  <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png" />
+
+  {% include 'fb-open-graph-tags' %}
+  {% include 'twitter-card' %}
+
+  {% include 'google-fonts-import' %}
+
+  <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet">
+
+  {{ 'styles.scss.css' | asset_url | stylesheet_tag }}
+   {% if settings.ajax_cart_method != 'page' %}
+  {% comment %}
+  <!-- Ajaxify Cart Plugin ================================================== -->
+  {{ 'ajaxify.scss.css' | asset_url | stylesheet_tag }}
+  {% endcomment %}
+  {% endif %}
+
+  {{ '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js' | script_tag }}
+
+  {{ 'option_selection.js' | shopify_asset_url | script_tag }}
+  {{ 'api.jquery.js' | shopify_asset_url | script_tag }}
+
+  {% if template contains 'customers' %}
+  {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+  {{ 'customer_area.js'  | shopify_asset_url | script_tag }}
+  {% endif %}
+
+
+  {{ content_for_header }}
+
+  <script>
+    document.documentElement.className = document.documentElement.className.replace('no-js', '');
+    products = {};
+    Shopify.money_format = {{ shop.money_format | json }};
+  </script>
+  {% if product.metafields.inventory.ShappifyHidden == "true" %} <meta name="robots" content="noindex"> {% endif %}
+  {% include 'initialize' %}
+<script data-obct type="text/javascript">
+/** DO NOT MODIFY THIS CODE**/
+!function(_window, _document) {
+var OB_ADV_ID='0026946e1fe8cf32ee7f3210758f01a537';
+if (_window.obApi) { return; }
+var api = _window.obApi = function() {api.dispatch ? api.dispatch.apply(api, arguments) : api.queue.push(arguments);};api.version = '1.0';api.loaded = true;api.marketerId = OB_ADV_ID;api.queue = [];var tag = _document.createElement('script');tag.async = true;tag.src = '//amplify.outbrain.com/cp/obtp.js';tag.type = 'text/javascript';var script = _document.getElementsByTagName('script')[0];script.parentNode.insertBefore(tag, script);}(window, document);
+obApi('track', 'PAGE_VIEW');
+</script>
+
+{{ 'build-kit-min.js' | asset_url | script_tag }}
+{% include 'initialize' %}
+
+</head>
+
+<body onload="initialize()" class="template-{{ template | split: '.' | first }} {% if template == 'index' %} home {% endif %}">
+  <div id="page-wrap">
+    <div id="page-wrap-inner">
+      <div id="page-wrap-content">
+        <div class="container">
+          <div class="page-header">
+            <div id="toolbar theme-toolbar" class="toolbar cf">
+              <span class="mobile-toolbar">
+                <a class="toggle-mob-nav" href="#"><i class="icon-nav"></i></a>
+                <a class="compact-logo" href="{{ shop.url }}">
+                  {% if settings.use_logo %}
+                  {% if settings.use_mobile_logo %}
+                  {{ 'compact_logo.png' | asset_url | img_tag }}
+                  {% else %}
+                  {{ 'logo.png' | asset_url | img_tag }}
+                  {% endif %}
+                  {% else %}
+                  {{ shop.name }}
+                  {% endif %}
+                </a>
+              </span>
+
+              {% unless settings.header_layout == 'mobile' %}
+              <span class="toolbar-links">
+                {% if settings.show_header_search %}
+                <form class="search-form" action="/search" method="get">
+
+                  {% comment %} Remove the following line to search everything, not just products {% endcomment %}
+                  <input type="hidden" name="type" value="product">
+
+                  <button class="icon-mag"></button>
+                  <input type="text" name="q" placeholder="{{ 'layout.header.search' | t }}"/>
+                </form>
+                {% endif %}
+              </span>
+              {% endunless %}
+
+              <span class="toolbar-cart">
+                {% unless settings.header_layout == 'mobile' %}
+                <span class="toolbar-links">
+                  {% if shop.customer_accounts_enabled %}
+                  {% if customer  %}
+                  <a href="/account">{{ 'layout.customer.your_account' | t }}</a>
+                  <span class="divider">|</span> {{ 'layout.customer.logout' | t | customer_logout_link }}
+                  {% else %}
+                  {{ 'layout.customer.login' | t | customer_login_link }}
+                  {% if shop.customer_accounts_optional %}
+                  <span class="divider">|</span>
+                  {% endif %}
+                  {% endif %}
+                  {% endif %}
+                {% endunless %}
+                <a class="current-cart {% if template != 'cart' %}toggle-cart-summary{% endif %}" href="/cart">
+                  {{ cart.item_count }} | {{ cart.total_price | money }} <i class="icon-cart"></i>
+                </a>
+              </span>
+
+              {% unless settings.header_layout == 'mobile' %}
+              <span class="toolbar-social">
+                {% include 'social-links' %}
+              </span>
+              {% endunless %}
+            </div>
+
+            <div class="logo-nav">
+              {% capture logo_html %}
+              <div class="logo align-{% if settings.header_layout == 'left' %}left{% else %}center{% endif %}">
+                {% if settings.use_logo %}{{ 'logo.png' | asset_url | img_tag | link_to: shop.url }}{% else %}{{ shop.name | link_to: shop.url }}{% endif %}
+              </div>
+              {% endcapture %}
+
+              {% unless settings.header_layout == 'nav' %}<div class="cf">{{ logo_html }}</div>{% endunless %}
+
+              {% unless settings.header_layout == 'mobile' %}
+              {% include 'main-navigation' %}
+              {% endunless %}
+            </div>
+          </div>
+        </div>
+        <div id="content">
+          {{content_for_layout}}
+        </div>
+      </div><!-- /#page-wrap-content -->
+      <a id="page-overlay" href="#"></a>
+    </div>
+
+      {% include 'footer' %}
+
+  </div><!-- /#page-wrap -->
+
+  {% include 'mobile-navigation' %}
+
+  {% include 'cart-summary' %}
+    
+
+  {{ 'libs.js' | asset_url | script_tag }}
+  {{ 'scripts.js' | asset_url | script_tag }}
+
+
+
+
+    
+    {% comment 'ajax-cart-template' %}{% endcomment %}
+    
+</body>
+</html>

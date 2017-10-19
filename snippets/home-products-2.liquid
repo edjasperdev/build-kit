@@ -1,0 +1,25 @@
+{% assign handle = settings.homepage_collection_2 %}
+{% assign collection = collections[handle] %}
+
+<section class="border-top section products-section">
+  <div class="container">
+    {% if collection.products.size == 0 %}
+    {% include 'onboarding-product-row' %}
+    {% else %}
+    <div class="opposing-items">
+      <h1 class="section-heading left">{{ collection.title | link_to: collection.url }}</h1>
+      <a class="btn section-count" href="{{ collection.url }}">
+        <span class="not-tiny">{{ 'collections.general.view_all' | t }} ({{ collection.products_count }})</span>
+        <span class="tiny">{{ collection.products_count }}</span>
+      </a>
+    </div>
+    <div class="row grid {% if settings.homepage_collection_2_rows == '1' %}one-row{% endif %}" data-normheights=".image" data-normheights-inner="img">
+      {% assign product_limit = settings.products_per_row | times: settings.homepage_collection_2_rows %}
+      {% for product in collection.products limit: product_limit %}
+      {% include 'bold-product' with product, hide_action: 'skip' %}
+        {% include 'product-block' %}
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</section>

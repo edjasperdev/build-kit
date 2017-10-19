@@ -1,0 +1,86 @@
+<footer id="page-footer" class="page-footer">
+  <div class="container">
+    
+    <div class="row section padless-top">
+      
+      <div class="extra-column half column">
+        {% if settings.footer_display_newsletter %}
+        {% include 'mailing-signup' %}
+        {% endif %}
+      </div>
+      
+      <div class="social-column align-right-desktop {% if settings.footer_display_newsletter %}half column{% else %}full column{% endif %}">
+        {% include 'social-links' %}
+      </div>
+      
+    </div>
+    
+    {% if settings.footer_complexity == 'kitchen_sink' %}
+    <div class="row section padless-top">
+      
+      {% if settings.use_logo and settings.show_footer_logo %}
+      <div class="logo-column column">
+        {{ 'footer_logo.png' | asset_url | img_tag | link_to: shop.url }}
+      </div>
+      {% endif %}
+      
+      <div class="text-column {% unless settings.use_logo and settings.show_footer_logo %}occupies-logo{% endunless %} column rte">
+        {{ pages[settings.footer_page].content }}
+      </div>
+      
+      <div class="links-column column">
+        <ul class="plain">
+          {% for link in linklists.footer.links %}
+          <li>{{ link.title | link_to: link.url }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      
+      <div class="links-column column">
+        <ul class="plain">
+          {% for link in linklists[settings.footer_linklist2].links %}
+          <li>{{ link.title | link_to: link.url }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      
+      <div class="links-column column">
+        <ul class="plain">
+          {% for link in linklists[settings.footer_linklist3].links %}
+          <li>{{ link.title | link_to: link.url }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      
+    </div>
+    
+    {% else %}
+    
+    <div class="">
+      <ul class="plain inline list-divide">
+        {% for link in linklists.footer.links %}
+        <li>{{ link.title | link_to: link.url }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    {% endif %}
+    
+    <div class="inline-row spaced">
+      <div class="inline-item left">
+        <div class="copy">{{ 'layout.footer.copyright' | t }} &copy; {{ "now" | date: "%Y" }} {{ shop.name | link_to: '/' }}.</div>
+      </div>
+      
+      <div class="inline-item right last payment-methods">
+        <img src="{{ 'footer-leaf.png' | asset_url }}" />
+        <br>
+        {% for type in shop.enabled_payment_types %}
+        <img src="{{ type | payment_type_img_url }}" />
+        {% endfor %}
+        
+
+      </div>
+    </div>
+    
+  </div>
+</footer>

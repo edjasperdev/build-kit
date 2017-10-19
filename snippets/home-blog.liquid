@@ -1,0 +1,17 @@
+<section class="border-top section blog-section">
+  <div class="container">
+    {% if settings.homepage_blog == blank %}
+    {% include 'onboarding-blog-row' %}
+    {% else %}
+    <div class="opposing-items">
+      <h1 class="section-heading left">{{ blogs[settings.homepage_blog].title | link_to: blogs[settings.homepage_blog].url }}</h1>
+      <a class="btn" href="{{ blogs[settings.homepage_blog].url }}">{{ 'blogs.general.view_all' | t }}</a>
+    </div>
+    <div class="row">
+      {% for article in blogs[settings.homepage_blog].articles limit: 3 %}
+      {% include 'article-block' with 'third column' %}
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</section>
