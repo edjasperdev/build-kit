@@ -1,15 +1,23 @@
 import React, {Component} from 'react'
 import BundleView from './BundleView'
-import Slider from 'react-slick'
 import BundleOptions from "./BundleOptions";
 
 class App extends Component {
+    constructor(){
+      super()
+
+      this.state = {
+        selected: ['Dope Taupe', 'Mented #5', 'Nude La La']
+      }
+    }
+
 
     handleOptionClick(count){
         console.log('im clicked', count)
     }
 
     render() {
+      let { selected } = this.state
         return (
             <div className="build-kit">
                 <h1>Build Your Own Kit $45</h1>
@@ -18,13 +26,17 @@ class App extends Component {
                 </article>
                 <BundleView/>
                 <div className="selected">
-                    <p>1. Dope Taupe</p>
-                    <p>2. Mented #5</p>
-                    <p>3. Nude La La</p>
+                  {selected.map((option, i) => {
+                    return <p key={i}>{`${i+1}. ${option}`}</p>
+                  })}
                 </div>
                 <div className="button"><h1>Start Kit</h1></div>
                 <div className="product-list">
-                   <BundleOptions/>
+                  <div className="showContainer">
+                    <div className="showList">Cool</div>
+                  </div>
+
+                  <BundleOptions/>
                 </div>
             </div>)
     }

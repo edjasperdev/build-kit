@@ -1,9 +1,7 @@
 import  React, { Component } from 'react'
 
 class BundleOption extends Component{
-    constructor(props){
-        super(props)
-    }
+
 
     handleClick(){
         console.log('heyy')
