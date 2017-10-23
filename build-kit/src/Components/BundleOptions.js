@@ -27,11 +27,14 @@ class BundleOptions extends React.Component {
           image1: 'https://cdn.shopify.com/s/files/1/1583/0411/files/Deep_Brown_Bare.jpg?8065515360427617192'
       }
   ]
-
-}
+  style={
+    bottom : this.state.isHovered ? '4px' : '75px'
+  }
 
 
   render () {
+
+
     let settings = {
       speed: 500,
       slidesToShow: 5,
@@ -45,7 +48,6 @@ class BundleOptions extends React.Component {
             slidesToShow: 5,
             slidesToScroll: 1,
             infinite: false,
-            dots: true
           }
         },
         {
@@ -81,12 +83,11 @@ class BundleOptions extends React.Component {
                     {i}
                 </div>
                   {this.state.isHovered ? <div style={{opacity: 100}} className="show-count"><p>{this.props.count}</p></div>: null}
-                  {`<p style={{bottom:  ${this.state.isHovered ? '4px' : '75px' } className='title'>{i}</p>`}
+                  {`<p style={this.style} className='title'>{i}</p>`}
 
               </div>
             )
-          })
-          }
+          })}
         </Slider>
       </div>
     )
