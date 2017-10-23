@@ -6,19 +6,37 @@ import 'slick-carousel/slick/slick.css';
 import BundleOption from './BundleOption'
 
 class BundleOptions extends React.Component {
+
+  constructor(props){
+    super(props)
+
+      this.state={
+        isHovered: false
+      }
+  }
+
+  toggleKitCount(){
+      this.setState({
+          isHovered: !this.state.isHovered
+      })
+
+  }
+
+
   render () {
     let settings = {
       speed: 500,
-      slidesToShow: 4,
+      slidesToShow: 5,
       slidesToScroll: 1,
       vertical: false,
+        infinite: false,
       responsive: [
         {
           breakpoint: 1024,
           settings: {
-            slidesToShow: 4,
+            slidesToShow: 5,
             slidesToScroll: 1,
-            infinite: true,
+            infinite: false,
             dots: true
           }
         },
@@ -40,15 +58,22 @@ class BundleOptions extends React.Component {
     return (
       <div>
         <Slider {...settings}>
-          {[1, 2, 3, 4, 5, 6].map((i) => {
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => {
             return(
-              <div>
+              <div
+                  className="kit-option-container"
+                  style={{display: 'inline-block'}}
+                  onMouseLeave={() => this.toggleKitCount()}
+                  onMouseEnter={() => this.toggleKitCount()}
+                  onClick={this.props.optionClick}>
                 <div
-                  style={{display: 'inline-block', width: '150px',  height: '150px'}}
-                  className="kit-option"
-                  onClick={ this.handleClick }>
-                  { i }
+                    className="kit-option"
+                    style={{width: '150px',  height: '150px'}}>
+
+                    {i}
                 </div>
+                  {this.state.isHovered ? <div style={{opacity: 100}} className="show-count"><p>{this.props.count}</p></div>: null}
+                  {`<p style={{bottom:  ${this.state.isHovered ? '4px' : '75px' } className='title'>{i}</p>`}
 
               </div>
             )

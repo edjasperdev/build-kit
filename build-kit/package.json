@@ -9,6 +9,7 @@
     "react": "^15.5.4",
     "react-carousel": "^4.2.2",
     "react-dom": "^15.5.4",
+    "react-responsive": "^3.0.0",
     "react-scripts": "1.0.14",
     "react-slick": "^0.15.4"
   },

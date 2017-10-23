@@ -1,44 +1,41 @@
 import React, {Component} from 'react'
-import BundleView from './BundleView'
-import BundleOptions from "./BundleOptions";
+import StartScreen from "./StartScreen";
+import BuildAKit from "./BuildAKit";
+import BundleView from "./BundleView";
 
 class App extends Component {
     constructor(){
       super()
 
       this.state = {
+        startScreen: true,
         selected: ['Dope Taupe', 'Mented #5', 'Nude La La']
       }
     }
 
+    handleStartClick(){
+        this.setState({startScreen: false})
+        console.log(this.state.startScreen)
+    }
 
-    handleOptionClick(count){
-        console.log('im clicked', count)
+    renderScreen(){
+        if(this.state.startScreen){
+            return <StartScreen startBuildKit={() => this.handleStartClick()}/>
+        } else {
+            return <BuildAKit/>
+        }
     }
 
     render() {
-      let { selected } = this.state
         return (
             <div className="build-kit">
                 <h1>Build Your Own Kit $45</h1>
                 <article>Subtext description goes here wow this is way cool. I love Shopify! next step is to get this to
                     the correct data
                 </article>
-                <BundleView/>
-                <div className="selected">
-                  {selected.map((option, i) => {
-                    return <p key={i}>{`${i+1}. ${option}`}</p>
-                  })}
-                </div>
-                <div className="button"><h1>Start Kit</h1></div>
-                <div className="product-list">
-                  <div className="showContainer">
-                    <div className="showList">Cool</div>
-                  </div>
-
-                  <BundleOptions/>
-                </div>
-            </div>)
+                {this.renderScreen()}
+            </div>
+        )
     }
 }
 

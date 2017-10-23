@@ -15,20 +15,77 @@ $slick-arrow-color: $primary-color;
     max-width: 450px;
     font-size: 18px;
   }
+  .start-screen {
+    position: relative;
+    .start-image {
+      margin: 20px 0;
+      width: 600px;
+      height: 450px;
+      background-color: white;
+
+      @media only screen and (max-width: 768px) {
+        width: 310px;
+        height: 280px;
+      }
+    }
+    .start-button {
+      color: white;
+      font-size: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      margin-bottom: 15px;
+      background-color: #bea08d;
+      top: 50%;
+      right: 50%;
+      height: 150px;
+      width: 150px;
+      border-radius: 50%;
+      transform: translate(50%, -50%);
+      transition: background-color 500ms ease;
+      &:hover {
+        cursor: pointer;
+        background-color: #c67345;
+      }
+      @media only screen and (max-width: 768px) {
+        background-color: #c67345;
+        position: relative;
+        border-radius: 0;
+        height: 30px;
+        transform: none;
+        top: 0;
+        width: 100%;
+        right: 0;
+      }
+    }
+  }
+  .build-a-kit {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
   .kit-image {
     margin: 20px 0;
-    width: 450px !important;
-    height: 450px !important;
+    width: 600px;
+    height: 450px;
     background-color: white;
+    @media only screen and (max-width: 768px) {
+      width: 310px;
+      height: 280px;
+    }
   }
   .selected {
-    width: 450px;
+    width: 600px;
     display: flex;
     margin-bottom: 10px;
-    padding-left: 145px;
+    justify-content: space-between;
+    @media only screen and (max-width: 768px) {
+      width: 310px;
+    }
     p {
       font-size: 16px;
-      margin-right: 25px;
     }
   }
   .button {
@@ -43,12 +100,15 @@ $slick-arrow-color: $primary-color;
   }
 
   .product-list {
-    max-width: 800px;
+    max-width: 1100px;
     display: flex;
     max-height: 250px;
     align-items: center;
+    //position: relative;
+    //right: -1600px;
 
     div.showContainer {
+      margin-right: 30px;
       max-height: 300px;
       min-height: 230px;
       display: flex;
@@ -58,25 +118,58 @@ $slick-arrow-color: $primary-color;
         height: 150px;
         width: 150px;
         text-align: center;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        p {
+          width: 125px;
+        }
       }
     }
     div.slick-slider {
       margin: 0;
+      max-width: 850px;
+      .slick-prev {
+        left: -225px;
+      }
       div.slick-list {
-        max-height: 150px;
-        max-width: 500px;
-
+        max-height: 200px;
+        position: relative;
+        top: 26px;
 
         div.slick-slide {
-          width: 150px !important;
-          height: 150px !important;
-          margin: 0 10px !important;
+          //width: 150px !important;
+          //height: 150px !important;
+          //margin: 0 10px !important;
         }
       }
-      div.kit-option {
-        //height: 125px;
-        //width: 125px;
-        background-color: white;
+      .kit-option-container {
+        div.kit-option {
+          height: 150px;
+          width: 150px;
+          background-color: white;
+        }
+        p.title {
+          text-align: left;
+          margin: 5px 0 0 0;
+          position: relative;
+
+        }
+        .show-count {
+          opacity: 0;
+          position: relative;
+          top: -110px;
+          left: 37px;
+          background-color: black;
+          height: 75px;
+          width: 75px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          font-size: 18px;
+        }
       }
     }
   }
@@ -123,6 +216,7 @@ $slick-arrow-color: $primary-color;
     }
   }
 }
+
 h3 {
   background: $primary-color;
   color: #fff;
@@ -133,6 +227,7 @@ h3 {
   position: relative;
   text-align: center;
 }
+
 .variable-width .slick-slide p {
   background: $primary-color;
   height: 100px;
@@ -141,37 +236,46 @@ h3 {
   line-height: 100px;
   text-align: center;
 }
+
 .center .slick-center h3 {
   color: #e67e22;
   opacity: 1;
   transform: scale(1.08);
 }
-.center h3{
+
+.center h3 {
   opacity: 0.8;
   transition: all 300ms ease;
 }
+
 .content {
   padding: 20px;
   margin: auto;
   width: 90%;
 }
+
 .slick-slide .image {
   padding: 10px;
 }
+
 .slick-slide img {
   border: 5px solid #FFF;
   display: block;
   margin: auto;
 }
+
 .slick-slide img.slick-loading {
   border: 0
 }
+
 .slick-slider {
   margin: 30px auto 50px;
 }
+
 .slick-dots {
   margin-left: 0;
 }
+
 .slick-thumb {
   bottom: -45px;
   li {
@@ -187,9 +291,10 @@ h3 {
     }
   }
 }
+
 @media (max-width: 768px) {
   h3 {
-    font-size:24px;
+    font-size: 24px;
   }
   .center {
     margin-left: -40px;
@@ -206,6 +311,12 @@ h3 {
     transition: all 300ms ease;
   }
 }
+
+* {
+  min-height: 0;
+  min-width: 0;
+}
+
 //// just like in the regular library, we cannot simply have a vertical
 //// slider fill available space like in the horizontal case
 ////

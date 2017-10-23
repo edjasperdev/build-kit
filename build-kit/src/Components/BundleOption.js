@@ -9,11 +9,11 @@ class BundleOption extends Component{
 
 
     render(){
-        let { count } = this.props
+        let { count, optionClick } = this.props
         return(
             <div
                 className="kit-option"
-                onClick={ this.handleClick }>
+                onClick={ optionClick }>
                 { count }
             </div>
         )
