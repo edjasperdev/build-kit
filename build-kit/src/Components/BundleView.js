@@ -1,5 +1,7 @@
 import  React, { Component } from 'react'
-
+import Lip1 from '../assets/PeachPleaseLip.jpg'
+import Lip2 from '../assets/BrownBareLip.jpg'
+import Lip3 from '../assets/BrandNudeLip.jpg'
 class BundleView extends Component{
     constructor(props){
         super(props)
@@ -10,7 +12,9 @@ class BundleView extends Component{
     render(){
         return(
             <div className="kit-image">
-                {this.props.view ? 'Start Screen' : 'Build Kit' }
+                <img src={Lip1} alt="" style={{opacity: 1}}/>
+                <img src={Lip2} alt=""/>
+                <img src={Lip3} alt=""/>
             </div>
             )
     }

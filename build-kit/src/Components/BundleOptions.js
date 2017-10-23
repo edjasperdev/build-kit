@@ -22,6 +22,14 @@ class BundleOptions extends React.Component {
 
   }
 
+  products=[
+      {title: 'Dope Taupe',
+          image1: 'https://cdn.shopify.com/s/files/1/1583/0411/files/Deep_Brown_Bare.jpg?8065515360427617192'
+      }
+  ]
+
+}
+
 
   render () {
     let settings = {
