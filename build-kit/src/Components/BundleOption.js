@@ -10,10 +10,11 @@ class BundleOption extends Component{
         }
     }
 
-    handleClick(count){
+    handleClick(item){
+        console.log(item)
         this.setState({selected: true})
-        console.log('state', count, this.state.selected)
-        this.props.handleOptionClick(count)
+        console.log('state', item, this.state.selected)
+        this.props.handleOptionClick(item)
 
     }
 
@@ -27,16 +28,21 @@ class BundleOption extends Component{
     render(){
         let { item } = this.props
         return(
+          <div>
             <div
                 className={`kit-option ${this.state.selected ? 'selected' : ''}`}
                 onClick={ (item) => this.handleClick(item) }
                 onMouseLeave={() => this.toggleKitCount()}
                 onMouseEnter={() => this.toggleKitCount()}>
                 { item }
-                {this.state.isHovered ? <div style={{opacity: 100}} className="show-count"><p>{this.props.item}</p></div>: null}
-                <p style={this.style} className='title'>{item}</p>
+                <div style={{opacity: 100}} className="show-count"><p>{item}</p></div>
+                {/*{this.state.isHovered ? <div style={{opacity: 100}} className="show-count"><p>{item}</p></div>: null}*/}
+
 
             </div>
+              <p style={this.style} className='title'>{item}</p>
+              <p style={this.style} className='title'>{item}</p>
+          </div>
         )
     }
 }

@@ -8,6 +8,7 @@ $slick-arrow-color: $primary-color;
   align-items: center;
   text-align: center;
   margin-top: 20px;
+  padding-bottom: 15px;
   h1 {
     font-size: 36px;
   }
@@ -142,7 +143,7 @@ $slick-arrow-color: $primary-color;
       div.slick-list {
         max-height: 200px;
         position: relative;
-        top: 26px;
+        top: 12px;
 
         div.slick-slide {
           //width: 150px !important;
@@ -155,11 +156,14 @@ $slick-arrow-color: $primary-color;
           height: 150px;
           width: 150px;
           background-color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
           .show-count {
             opacity: 0;
-            position: relative;
-            top: -110px;
-            left: 37px;
+            //position: relative;
+            //left: 37px;
             background-color: black;
             height: 75px;
             width: 75px;

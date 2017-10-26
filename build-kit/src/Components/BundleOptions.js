@@ -9,10 +9,10 @@ class BundleOptions extends React.Component {
 
   constructor(props){
     super(props);
-
       this.state={
         isHovered: false
       }
+      this.handleClick = this.handleClick.bind(this)
   }
 
 
@@ -27,7 +27,9 @@ class BundleOptions extends React.Component {
   };
 
   handleClick(count){
-      this.props.handleOptionClick(count)
+      console.log('options count', count)
+      console.log('options props', this.props)
+      this.props.optionClick(count)
   }
 
   render () {
@@ -66,12 +68,13 @@ class BundleOptions extends React.Component {
     return (
       <div>
         <Slider {...settings}>
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => {
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, i) => {
             return(
               <div
+                key={i}
                   className="kit-option-container"
                   style={{display: 'inline-block'}}>
-                  <BundleOption item={i} handleOptionClick={(i) => this.handleClick(i)} />
+                  <BundleOption item={item} handleOptionClick={e => this.handleClick(item,e)} />
 
               </div>
             )

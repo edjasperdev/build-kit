@@ -5,6 +5,7 @@
   align-items: center;
   text-align: center;
   margin-top: 20px;
+  padding-bottom: 15px;
   /*mobile style*/ }
   .build-kit h1 {
     font-size: 36px; }
@@ -118,16 +119,16 @@
       .build-kit .product-list div.slick-slider div.slick-list {
         max-height: 200px;
         position: relative;
-        top: 26px; }
+        top: 12px; }
       .build-kit .product-list div.slick-slider .kit-option-container div.kit-option {
         height: 150px;
         width: 150px;
-        background-color: white; }
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center; }
         .build-kit .product-list div.slick-slider .kit-option-container div.kit-option .show-count {
           opacity: 0;
-          position: relative;
-          top: -110px;
-          left: 37px;
           background-color: black;
           height: 75px;
           width: 75px;
