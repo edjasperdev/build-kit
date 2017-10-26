@@ -6,16 +6,15 @@ import BundleView from "./BundleView";
 class App extends Component {
     constructor(){
       super()
+        this.state = {
+            startScreen: true,
+        }
 
-      this.state = {
-        startScreen: true,
-        selected: ['Dope Taupe', 'Mented #5', 'Nude La La']
-      }
     }
 
     handleStartClick(){
         this.setState({startScreen: false})
-        console.log(this.state.startScreen)
+        // console.log(this.state.startScreen)
     }
 
     renderScreen(){

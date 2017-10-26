@@ -155,6 +155,21 @@ $slick-arrow-color: $primary-color;
           height: 150px;
           width: 150px;
           background-color: white;
+          .show-count {
+            opacity: 0;
+            position: relative;
+            top: -110px;
+            left: 37px;
+            background-color: black;
+            height: 75px;
+            width: 75px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+          }
         }
         p.title {
           text-align: left;
@@ -162,21 +177,7 @@ $slick-arrow-color: $primary-color;
           position: relative;
 
         }
-        .show-count {
-          opacity: 0;
-          position: relative;
-          top: -110px;
-          left: 37px;
-          background-color: black;
-          height: 75px;
-          width: 75px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: white;
-          font-size: 18px;
-        }
+
       }
     }
   }

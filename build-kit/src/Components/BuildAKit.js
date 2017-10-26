@@ -37,7 +37,13 @@ class BuildAKit extends Component {
     }
 
     handleOptionClick(count){
-        console.log('im clicked', count)
+        let selected = this.state.selected
+        console.log('count', count)
+        console.log('state', selected)
+        // selected.push(count)
+        // this.setState({
+        //     selected: count
+        // })
     }
 
     render() {
@@ -59,7 +65,7 @@ class BuildAKit extends Component {
                     toggleKitCount={() => this.handleHover()}
                     showCount={this.state.showCount}
                     count={this.state.selected.length + 1 }
-                    optionClick={() => this.handleOptionClick()} />
+                    optionClick={() =>this.handleOptionClick()} />
             </div>
         </div>)
     }

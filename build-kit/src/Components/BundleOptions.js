@@ -8,29 +8,27 @@ import BundleOption from './BundleOption'
 class BundleOptions extends React.Component {
 
   constructor(props){
-    super(props)
+    super(props);
 
       this.state={
         isHovered: false
       }
   }
 
-  toggleKitCount(){
-      this.setState({
-          isHovered: !this.state.isHovered
-      })
 
-  }
 
   products=[
       {title: 'Dope Taupe',
           image1: 'https://cdn.shopify.com/s/files/1/1583/0411/files/Deep_Brown_Bare.jpg?8065515360427617192'
       }
-  ]
+  ];
   style={
-    bottom : this.state.isHovered ? '4px' : '75px'
-  }
+    // bottom : this.state.isHovered ? '4px' : '75px'
+  };
 
+  handleClick(count){
+      this.props.handleOptionClick(count)
+  }
 
   render () {
 
@@ -72,18 +70,8 @@ class BundleOptions extends React.Component {
             return(
               <div
                   className="kit-option-container"
-                  style={{display: 'inline-block'}}
-                  onMouseLeave={() => this.toggleKitCount()}
-                  onMouseEnter={() => this.toggleKitCount()}
-                  onClick={this.props.optionClick}>
-                <div
-                    className="kit-option"
-                    style={{width: '150px',  height: '150px'}}>
-
-                    {i}
-                </div>
-                  {this.state.isHovered ? <div style={{opacity: 100}} className="show-count"><p>{this.props.count}</p></div>: null}
-                  {`<p style={this.style} className='title'>{i}</p>`}
+                  style={{display: 'inline-block'}}>
+                  <BundleOption item={i} handleOptionClick={(i) => this.handleClick(i)} />
 
               </div>
             )
