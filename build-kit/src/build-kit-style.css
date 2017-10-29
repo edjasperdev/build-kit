@@ -66,22 +66,22 @@
     justify-content: center;
     align-items: center; }
     .build-kit .kit-image img {
-      max-height: 400px;
-      opacity: .3; }
+      max-height: 400px; }
     @media only screen and (max-width: 768px) {
       .build-kit .kit-image {
         width: 310px;
         height: 280px; } }
-  .build-kit .selected {
+  .build-kit .show-selected-option {
+    height: 50px;
     width: 600px;
     display: flex;
-    margin-bottom: 10px;
-    justify-content: space-between; }
+    margin-bottom: 10px; }
     @media only screen and (max-width: 768px) {
-      .build-kit .selected {
+      .build-kit .show-selected-option {
         width: 310px; } }
-    .build-kit .selected p {
-      font-size: 16px; }
+    .build-kit .show-selected-option p {
+      font-size: 16px;
+      margin-right: 75px; }
   .build-kit .button {
     margin-bottom: 20px;
     width: 450px;
@@ -117,31 +117,45 @@
       .build-kit .product-list div.slick-slider .slick-prev {
         left: -225px; }
       .build-kit .product-list div.slick-slider div.slick-list {
-        max-height: 200px;
-        position: relative;
-        top: 12px; }
-      .build-kit .product-list div.slick-slider .kit-option-container div.kit-option {
-        height: 150px;
-        width: 150px;
-        background-color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center; }
-        .build-kit .product-list div.slick-slider .kit-option-container div.kit-option .show-count {
-          opacity: 0;
-          background-color: black;
-          height: 75px;
-          width: 75px;
-          border-radius: 50%;
+        top: 24px;
+        position: relative; }
+      .build-kit .product-list div.slick-slider .kit-option-container {
+        min-height: 200px;
+        position: relative; }
+        .build-kit .product-list div.slick-slider .kit-option-container .close-button {
+          position: absolute;
+          background-color: lightgrey;
+          color: white;
+          left: 0;
+          width: 20px;
+          height: 20px; }
+          .build-kit .product-list div.slick-slider .kit-option-container .close-button:hover {
+            background-color: grey;
+            cursor: pointer; }
+        .build-kit .product-list div.slick-slider .kit-option-container div.kit-option {
+          height: 150px;
+          width: 150px;
+          background-color: white;
           display: flex;
           align-items: center;
-          justify-content: center;
-          color: white;
-          font-size: 18px; }
-      .build-kit .product-list div.slick-slider .kit-option-container p.title {
-        text-align: left;
-        margin: 5px 0 0 0;
-        position: relative; }
+          justify-content: center; }
+          .build-kit .product-list div.slick-slider .kit-option-container div.kit-option .option {
+            opacity: 0; }
+            .build-kit .product-list div.slick-slider .kit-option-container div.kit-option .option.show-count {
+              opacity: 100;
+              background-color: black;
+              height: 50px;
+              width: 50px;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: white;
+              font-size: 18px; }
+        .build-kit .product-list div.slick-slider .kit-option-container p.title {
+          text-align: left;
+          margin: 5px 0 0 0;
+          position: relative; }
   @media only screen and (max-width: 768px) {
     .build-kit h1 {
       font-size: 24px; }

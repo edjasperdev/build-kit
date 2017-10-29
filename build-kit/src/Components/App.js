@@ -7,7 +7,7 @@ class App extends Component {
     constructor(){
       super()
         this.state = {
-            startScreen: true,
+            startScreen: false
         }
 
     }

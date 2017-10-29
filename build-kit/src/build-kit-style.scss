@@ -77,23 +77,24 @@ $slick-arrow-color: $primary-color;
     align-items: center;
     img{
       max-height: 400px;
-      opacity: .3;
+      //opacity: .3;
     }
     @media only screen and (max-width: 768px) {
       width: 310px;
       height: 280px;
     }
   }
-  .selected {
+  .show-selected-option {
+    height: 50px;
     width: 600px;
     display: flex;
     margin-bottom: 10px;
-    justify-content: space-between;
     @media only screen and (max-width: 768px) {
       width: 310px;
     }
     p {
       font-size: 16px;
+      margin-right: 75px;
     }
   }
   .button {
@@ -141,9 +142,9 @@ $slick-arrow-color: $primary-color;
         left: -225px;
       }
       div.slick-list {
-        max-height: 200px;
+        top: 24px;
         position: relative;
-        top: 12px;
+
 
         div.slick-slide {
           //width: 150px !important;
@@ -152,6 +153,21 @@ $slick-arrow-color: $primary-color;
         }
       }
       .kit-option-container {
+        min-height: 200px;
+        position: relative;
+        .close-button{
+          position: absolute;
+          background-color: lightgrey;
+          color: white;
+          left: 0;
+          width: 20px;
+          height: 20px;
+
+          &:hover{
+            background-color: grey;
+            cursor: pointer;
+          }
+        }
         div.kit-option {
           height: 150px;
           width: 150px;
@@ -160,19 +176,22 @@ $slick-arrow-color: $primary-color;
           align-items: center;
           justify-content: center;
 
-          .show-count {
+          .option {
             opacity: 0;
-            //position: relative;
-            //left: 37px;
-            background-color: black;
-            height: 75px;
-            width: 75px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 18px;
+            &.show-count {
+              opacity: 100;
+              //position: relative;
+              //left: 37px;
+              background-color: black;
+              height: 50px;
+              width: 50px;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: white;
+              font-size: 18px;
+            }
           }
         }
         p.title {

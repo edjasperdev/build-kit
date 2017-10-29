@@ -28,6 +28,10 @@ class BuildAKit extends Component {
         }
     }
 
+    cancelClick(count){
+        let selected
+    }
+
     handleHover(){
         console.log('yep')
         if(this.state.selected.length <= 3){
@@ -42,9 +46,10 @@ class BuildAKit extends Component {
         console.log('kit count', count)
         console.log('kit state', selected)
 
-        // selected.push(count)
+        selected.push(count)
+        console.log('new state', selected)
         this.setState({
-            selected: count
+            selected
         })
     }
 
@@ -53,11 +58,11 @@ class BuildAKit extends Component {
         console.log(selected)
         return (
             <div className='build-a-kit'>
-                <BundleView />
-            <div className="selected">
-                {/*{selected.map((option, i) => {*/}
-                    {/*return <p key={i}>{`${i+1}. ${option}`}</p>*/}
-                {/*})}*/}
+                <BundleView numSelected={selected.length}/>
+            <div className="show-selected-option">
+                {selected.map((option, i) => {
+                    return <p key={i}>{`${i+1}. ${option}`}</p>
+                })}
             </div>
             <div className="product-list">
                 <div className="showContainer">
@@ -65,6 +70,7 @@ class BuildAKit extends Component {
                 </div>
 
                 <BundleOptions
+                    cancelOption={this.cancelClick}
                     toggleKitCount={() => this.handleHover()}
                     showCount={this.state.showCount}
                     count={this.state.selected.length + 1 }

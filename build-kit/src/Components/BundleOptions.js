@@ -74,7 +74,7 @@ class BundleOptions extends React.Component {
                 key={i}
                   className="kit-option-container"
                   style={{display: 'inline-block'}}>
-                  <BundleOption item={item} handleOptionClick={e => this.handleClick(item,e)} />
+                  <BundleOption item={item} count={this.props.count} handleOptionClick={e => this.handleClick(item,e)} />
 
               </div>
             )
