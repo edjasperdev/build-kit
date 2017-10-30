@@ -4,13 +4,13 @@ import BuildAKit from "./BuildAKit";
 import BundleView from "./BundleView";
 
 class App extends Component {
-    constructor(){
-      super()
+    constructor(props){
+      super(props)
         this.state = {
             startScreen: false
         }
-
     }
+
 
     handleStartClick(){
         this.setState({startScreen: false})
@@ -21,7 +21,7 @@ class App extends Component {
         if(this.state.startScreen){
             return <StartScreen startBuildKit={() => this.handleStartClick()}/>
         } else {
-            return <BuildAKit/>
+            return <BuildAKit client={this.props.client}/>
         }
     }
 

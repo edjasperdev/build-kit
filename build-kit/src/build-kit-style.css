@@ -132,6 +132,9 @@
           .build-kit .product-list div.slick-slider .kit-option-container .close-button:hover {
             background-color: grey;
             cursor: pointer; }
+            @media only screen and (max-width: 1024px) {
+              .build-kit .product-list div.slick-slider .kit-option-container .close-button:hover {
+                background-color: lightgrey; } }
         .build-kit .product-list div.slick-slider .kit-option-container div.kit-option {
           height: 150px;
           width: 150px;
@@ -143,6 +146,20 @@
             opacity: 0; }
             .build-kit .product-list div.slick-slider .kit-option-container div.kit-option .option.show-count {
               opacity: 100;
+              display: flex; }
+              .build-kit .product-list div.slick-slider .kit-option-container div.kit-option .option.show-count.twice p:first-of-type {
+                left: 10px;
+                position: relative; }
+                @media only screen and (max-width: 768px) {
+                  .build-kit .product-list div.slick-slider .kit-option-container div.kit-option .option.show-count.twice p:first-of-type {
+                    left: 5px; } }
+              .build-kit .product-list div.slick-slider .kit-option-container div.kit-option .option.show-count.twice p:last-of-type {
+                right: 10px;
+                position: relative; }
+                @media only screen and (max-width: 768px) {
+                  .build-kit .product-list div.slick-slider .kit-option-container div.kit-option .option.show-count.twice p:last-of-type {
+                    right: 5px; } }
+            .build-kit .product-list div.slick-slider .kit-option-container div.kit-option .option p {
               background-color: black;
               height: 50px;
               width: 50px;
@@ -151,12 +168,60 @@
               align-items: center;
               justify-content: center;
               color: white;
-              font-size: 18px; }
+              font-size: 18px;
+              cursor: pointer; }
+              @media only screen and (max-width: 768px) {
+                .build-kit .product-list div.slick-slider .kit-option-container div.kit-option .option p {
+                  height: 40px;
+                  width: 40px; } }
+              @media only screen and (max-width: 420px) {
+                .build-kit .product-list div.slick-slider .kit-option-container div.kit-option .option p {
+                  height: 30px;
+                  width: 30px; } }
         .build-kit .product-list div.slick-slider .kit-option-container p.title {
           text-align: left;
           margin: 5px 0 0 0;
           position: relative; }
+        .build-kit .product-list div.slick-slider .kit-option-container p.duplicate {
+          font-size: 14px;
+          text-align: left;
+          margin: 0;
+          position: relative; }
+          .build-kit .product-list div.slick-slider .kit-option-container p.duplicate:hover {
+            cursor: pointer;
+            text-decoration: underline; }
+  @media only screen and (max-width: 1024px) {
+    .build-kit div.product-list {
+      max-width: 800px; }
+      .build-kit div.product-list div.showContainer {
+        min-width: 125px;
+        margin-right: 10px; }
+        .build-kit div.product-list div.showContainer div.showList {
+          height: 125px;
+          width: 125px; }
+      .build-kit div.product-list div.slick-slider div.slick-list {
+        top: 38px; }
+      .build-kit div.product-list div.slick-slider .slick-prev {
+        left: -175px; }
+      .build-kit div.product-list div.kit-option-container {
+        width: 135px !important; }
+        .build-kit div.product-list div.kit-option-container div.kit-option {
+          height: 125px !important;
+          width: 125px !important; } }
   @media only screen and (max-width: 768px) {
+    .build-kit div.product-list {
+      max-width: 550px; }
+      .build-kit div.product-list div.slick-slider {
+        max-width: 400px; }
+        .build-kit div.product-list div.slick-slider div.slick-list {
+          top: 39px; }
+        .build-kit div.product-list div.slick-slider .slick-prev {
+          left: -175px; }
+      .build-kit div.product-list div.kit-option-container {
+        width: 134px !important; }
+        .build-kit div.product-list div.kit-option-container div.kit-option {
+          height: 125px !important;
+          width: 125px !important; }
     .build-kit h1 {
       font-size: 24px; }
     .build-kit article {
@@ -164,12 +229,12 @@
       font-size: 14px; }
     .build-kit .kit-image {
       margin: 20px 0;
-      width: 300px;
-      height: 300px;
+      width: 350px;
+      height: 350px;
       background-color: white;
       display: flex; }
       .build-kit .kit-image img {
-        max-height: 400px; }
+        max-height: 275px; }
     .build-kit .selected {
       width: 300px;
       justify-content: space-around; }
@@ -177,11 +242,27 @@
         font-size: 12px; }
     .build-kit .button {
       margin-bottom: 20px;
-      width: 300px; }
-    .build-kit .product-list div {
-      height: 75px;
-      width: 75px;
-      margin: 5px; } }
+      width: 300px; } }
+  @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+    .build-kit div.product-list {
+      max-width: 550px; }
+      .build-kit div.product-list div.showContainer {
+        min-width: 75px;
+        margin-right: 10px; }
+        .build-kit div.product-list div.showContainer div.showList {
+          height: 75px;
+          width: 75px; }
+      .build-kit div.product-list div.slick-slider {
+        max-width: 250px; }
+        .build-kit div.product-list div.slick-slider div.slick-list {
+          top: 64px; }
+        .build-kit div.product-list div.slick-slider .slick-prev {
+          left: -115px; }
+      .build-kit div.product-list div.kit-option-container {
+        width: 84px !important; }
+        .build-kit div.product-list div.kit-option-container div.kit-option {
+          height: 75px !important;
+          width: 75px !important; } }
 
 h3 {
   background: #00558B;
