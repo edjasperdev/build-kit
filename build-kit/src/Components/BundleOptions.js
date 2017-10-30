@@ -22,7 +22,8 @@ class BundleOptions extends React.Component {
       image1: 'https://cdn.shopify.com/s/files/1/1583/0411/files/Deep_Brown_Bare.jpg?8065515360427617192'
     }
   ]
-  componentWillMount(){
+
+  componentWillMount () {
     let {products} = this.props
     this.setState({
       products
@@ -70,9 +71,7 @@ class BundleOptions extends React.Component {
     }
     return (
       <div>
-        {this.props.loading ?
-          <p>Loading</p> :
-          <Slider {...settings}>
+        {this.props.loading ? <p>Loading</p> : <Slider {...settings}>
           {this.state.products.map((item, i) => {
             return (
               <div
@@ -90,7 +89,7 @@ class BundleOptions extends React.Component {
               </div>
             )
           })}
-          </Slider>
+        </Slider>
         }
       </div>
     )

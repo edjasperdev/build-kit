@@ -24,7 +24,7 @@ class BundleView extends Component {
           <img src={Lip2} alt="" style={this.showStyle(2)}/>
           <img src={Lip3} alt="" style={this.showStyle(3)}/>
         </div>
-        {this.props.showBuyButton ? <div className='buy-button'>Buy Now</div>: null}
+        {this.props.showBuyButton ? <div className='buy-button'>Buy Now</div> : null}
       </div>
     )
   }

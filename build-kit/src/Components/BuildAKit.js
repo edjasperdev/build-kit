@@ -20,38 +20,31 @@ class BuildAKit extends Component {
     this.showCount = this.showCount.bind(this)
   }
 
-
-  componentWillMount() {
-    let { products } = this.state
-    this.props.client.fetchQueryProducts({ collection_id: '484501000', sort_by: 'title-ascending' })
-      .then((collection) => {
-        collection.map((product) => {
-          products.push({
-            title:product.title,
-            image1:product.images[0].src,
-            image2:product.images[1].src,
-            productId:product.id
+  componentWillMount () {
+    let selectedState = localStorage.getItem('selectedState');
+    let kitState = localStorage.getItem('kitState');
+    if(selectedState){
+      this.setState({selected: JSON.parse(selectedState)})
+    }
+    if(kitState){
+      this.setState({products: JSON.parse(kitState), loading: false})
+    } else {
+      let {products} = this.state
+      this.props.client.fetchQueryProducts({collection_id: '484501000', sort_by: 'title-ascending'})
+        .then((collection) => {
+          collection.map((product) => {
+            products.push({
+              title: product.title,
+              image1: product.images[0].src,
+              image2: product.images[1].src,
+              productId: product.id
+            })
+            localStorage.setItem('kitState', JSON.stringify(products));
+            this.setState({products, loading: false})
           })
-          console.log('products', products)
-          this.setState({products, loading: false})
-
         })
-      console.log('collection', collection)
-      // this.setState({
-      //   products: res,
-      // });
-    });
-
-    // this.props.client.fetchShopInfo().then((res) => {
-    //   console.log('shopInfo', res)
-    //   // this.setState({
-    //   //   shop: res,
-    //   // });
-    // });
+    }
   }
-
-
-
 
   renderOptionText () {
     let {selected} = this.state
@@ -78,26 +71,26 @@ class BuildAKit extends Component {
     console.log('new', selected)
     this.setState({selected})
   }
-  getAllIndexes(arr, val) {
-    var indexes = [], i = -1;
-    while ((i = arr.indexOf(val, i+1)) != -1){
-      indexes.push(i);
+
+  getAllIndexes (arr, val) {
+    var indexes = [], i = -1
+    while ((i = arr.indexOf(val, i + 1)) != -1) {
+      indexes.push(i)
     }
-    return indexes;
+    return indexes
   }
-  // var indexes = getAllIndexes(Cars, "Nano");
 
   showCount (item) {
     let {selected} = this.state
     let count = []
-    if(isEmpty(selected)){
+    if (isEmpty(selected)) {
       count = [1]
     }
     else {
       let indexes = this.getAllIndexes(selected, item)
-      if(indexes.length === 1){
+      if (indexes.length === 1) {
         count.push(selected.indexOf(item) + 1)
-      } else{
+      } else {
         indexes.map((index) => {
           count.push(index + 1)
         })
@@ -118,6 +111,8 @@ class BuildAKit extends Component {
     this.setState({
       selected
     })
+    localStorage.setItem('selectedState', JSON.stringify(selected))
+
   }
 
   render () {
@@ -137,7 +132,6 @@ class BuildAKit extends Component {
           <div className="showContainer">
             <div className="showList"><p>{this.renderOptionText()}</p></div>
           </div>
-
           <BundleOptions
             loading={this.state.loading}
             products={this.state.products}

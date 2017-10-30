@@ -251,19 +251,19 @@ $slick-arrow-color: $primary-color;
 
     div.product-list {
       max-width: 800px;
-      div.showContainer{
+      div.showContainer {
         min-width: 125px;
         margin-right: 10px;
-        div.showList{
+        div.showList {
           height: 125px;
           width: 125px;
         }
       }
-      div.slick-slider{
-          div.slick-list{
-            top: 38px;
-          }
-          .slick-prev{
+      div.slick-slider {
+        div.slick-list {
+          top: 38px;
+        }
+        .slick-prev {
           left: -175px;
         }
       }
@@ -279,20 +279,14 @@ $slick-arrow-color: $primary-color;
   @media only screen and (max-width: 768px) {
     div.product-list {
       max-width: 550px;
-      div.showContainer{
-        //min-width: 125px;
-        //margin-right: 10px;
-        //div.showList{
-        //  height: 125px;
-        //  width: 125px;
-        //}
+      div.showContainer {
       }
-      div.slick-slider{
+      div.slick-slider {
         max-width: 400px;
-        div.slick-list{
+        div.slick-list {
           top: 39px;
         }
-        .slick-prev{
+        .slick-prev {
           left: -175px;
         }
       }
@@ -339,17 +333,13 @@ $slick-arrow-color: $primary-color;
       }
     }
   }
-  @media only screen
-  and (min-device-width: 375px)
-  and (max-device-width: 667px)
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: portrait) {
+  @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
     div.product-list {
       max-width: 550px;
       div.showContainer {
         min-width: 75px;
         margin-right: 10px;
-        div.showList{
+        div.showList {
           height: 75px;
           width: 75px;
         }
