@@ -19,6 +19,7 @@ class BuildAKit extends Component {
     this.handleCancelClick = this.handleCancelClick.bind(this)
     this.showCount = this.showCount.bind(this)
     this.getProducts = this.getProducts.bind(this)
+    this.updateState = this.updateState.bind(this)
     // this.updateProductCache = this.updateProductCache.bind(this)
   }
 
@@ -26,16 +27,26 @@ class BuildAKit extends Component {
     this.getProducts()
   }
 
-  getProducts () {
-    let kitState = localStorage.getItem('kitState') ? JSON.parse(localStorage.getItem('kitState')): null,
-        selected
-    if(kitState){
-      selected = kitState
-        .filter((product) => product.selected.length > 0)
-        .sort((a,b) => {a.selected[0] > b.selected[0] })
-      console.log('filt and sort', selected)
-      this.setState({products: kitState, loading: false, selected})
 
+
+  updateState(products){
+    let selected = products
+      .filter((product) => product.selected.length > 0)
+      .sort((a,b) => a.selected[0] > b.selected[0] )
+    this.setState({products: products, loading: false, selected})
+  }
+
+
+  getProducts () {
+    let kitState = localStorage.getItem('kitState') ? JSON.parse(localStorage.getItem('kitState')): null
+        // selected
+    if(kitState){
+      // selected = kitState
+      //   .filter((product) => product.selected.length > 0)
+      //   .sort((a,b) => {a.selected[0] > b.selected[0] })
+      // this.setState({products: kitState, loading: false, selected})
+      localStorage.setItem('kitState', JSON.stringify(kitState))
+      this.updateState(kitState);
     } else {
       let {products} = this.state
       this.props.client.fetchQueryProducts({collection_id: '484501000', sort_by: 'title-ascending'})
@@ -71,16 +82,20 @@ class BuildAKit extends Component {
   handleCancelClick (item) {
     let {selected} = this.state
     let index = selected.indexOf(item)
-    // let updatedProducts = this.updateProductCache(item)
-    //start here
-    if (selected.length === 1) {
-      selected = []
-    } else if (index > -1) {
-      selected.splice(index, 1)
+    let selectedItem = selected[index]
+    if (selectedItem.selected.length === 1) {
+      selected[index].selected = []
+    } else{
+      selected[index].selected.pop()
     }
-
-    console.log('new', selected)
-    this.setState({selected})
+    selected.map((product) => {
+      product.selected.map((number) => {
+        return number - 1
+      })
+    })
+    this.setState(selected)
+    let updatedProducts = this.updateProductCache(item)
+    this.updateState(updatedProducts);
   }
 
   getAllIndexes (arr, val) {
