@@ -39,14 +39,14 @@ class BuildAKit extends Component {
 
   getProducts () {
     let kitState = localStorage.getItem('kitState') ? JSON.parse(localStorage.getItem('kitState')): null
-        // selected
+    //     selected
     if(kitState){
-      // selected = kitState
-      //   .filter((product) => product.selected.length > 0)
-      //   .sort((a,b) => {a.selected[0] > b.selected[0] })
-      // this.setState({products: kitState, loading: false, selected})
+    //   selected = kitState
+    //   //   .filter((product) => product.selected.length > 0)
+    //   //   .sort((a,b) => {a.selected[0] > b.selected[0] })
+      this.setState({products: kitState, loading: false})
       localStorage.setItem('kitState', JSON.stringify(kitState))
-      this.updateState(kitState);
+      // this.updateState(kitState);
     } else {
       let {products} = this.state
       this.props.client.fetchQueryProducts({collection_id: '484501000', sort_by: 'title-ascending'})
@@ -82,20 +82,14 @@ class BuildAKit extends Component {
   handleCancelClick (item) {
     let {selected} = this.state
     let index = selected.indexOf(item)
-    let selectedItem = selected[index]
-    if (selectedItem.selected.length === 1) {
-      selected[index].selected = []
-    } else{
-      selected[index].selected.pop()
+    if (selected.length === 1) {
+      selected = []
+    } else if (index > -1) {
+      selected.splice(index, 1)
     }
-    selected.map((product) => {
-      product.selected.map((number) => {
-        return number - 1
-      })
-    })
-    this.setState(selected)
-    let updatedProducts = this.updateProductCache(item)
-    this.updateState(updatedProducts);
+
+    console.log('new', selected)
+    this.setState({selected})
   }
 
   getAllIndexes (arr, val) {
@@ -138,28 +132,25 @@ class BuildAKit extends Component {
   }
 
   handleOptionClick (item) {
+    let {selected} = this.state
+    console.log('kit count', item)
+    console.log('kit state', selected)
+
+    selected.push(item)
+    console.log('new state', selected)
+    this.setState({
+      selected
+    })
+
     // let products = JSON.parse(localStorage.getItem('kitState'))
     // console.log('products', products)
-    let {selected} = this.state
-    item.selected.push(selected.length + 1)
-    selected.push(item)
-    let updatedProducts = this.updateProductCache(item)
-    console.log('updatedProducts handleOption', updatedProducts )
+    // let {selected} = this.state
+    // item.selected.push(selected.length + 1)
+    // selected.push(item)
+    // let updatedProducts = this.updateProductCache(item)
+    // console.log('updatedProducts handleOption', updatedProducts )
     // console.log('selected', selected)
-    // let index = selected.indexOf(item)
-    //   products.map((product) => {
-    //     if (product.id === item.id) {
-    //       product.selected.push(index + 1)
-    //     }
-    //   })
-    // this.setState({
-    //   selected,
-    //   products: products
-    // })
-    this.setState({
-      selected,
-      products: updatedProducts
-    })
+
     // localStorage.setItem('kitState', JSON.stringify(products))
     // localStorage.setItem('selected', JSON.stringify(selected))
 
@@ -173,11 +164,11 @@ class BuildAKit extends Component {
           numSelected={selected.length}
           showBuyButton={selected.length === 3}/>
         <div className="show-selected-option">
-          {selected.map((product, i) => {
-            return <p key={i}>{`${product.selected[0]}. ${product.title}`}</p>
+          {selected.map((option, i) => {
+            return <p key={i}>{`${i + 1}. ${option.title}`}</p>
           })}
         </div>
-        <div className="product-list">
+        <div className={`product-list ${selected.length === 3 ? 'disabled': ''}`}>
           <div className="showContainer">
             <div className="showList"><p>{this.renderOptionText()}</p></div>
           </div>
@@ -185,6 +176,7 @@ class BuildAKit extends Component {
             loading={this.state.loading}
             products={this.state.products}
             // cancelOption={this.cancelClick}
+            doneKit={selected.length === 3}
             // toggleKitCount={() => this.handleHover()}
             showCount={this.state.showCount}
             count={this.state.selected.length + 1}

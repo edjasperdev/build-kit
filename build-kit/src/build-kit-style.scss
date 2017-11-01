@@ -116,6 +116,10 @@ $slick-arrow-color: $primary-color;
     align-items: center;
     //position: relative;
     //right: -1600px;
+    &.disabled{
+      opacity: 0.8;
+      pointer-events: none;
+    }
 
     div.showContainer {
       margin-right: 30px;

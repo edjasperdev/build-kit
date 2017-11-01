@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fe2c8f87-9054-4fcc-82b3-0afabbdf7218" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build-kit/src/Components/BuildAKit.js" afterPath="$PROJECT_DIR$/build-kit/src/Components/BuildAKit.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build-kit/src/Components/BundleOption.js" afterPath="$PROJECT_DIR$/build-kit/src/Components/BundleOption.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build-kit/src/Components/BundleOptions.js" afterPath="$PROJECT_DIR$/build-kit/src/Components/BundleOptions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build-kit/src/build-kit-style.css" afterPath="$PROJECT_DIR$/build-kit/src/build-kit-style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build-kit/src/build-kit-style.scss" afterPath="$PROJECT_DIR$/build-kit/src/build-kit-style.scss" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -44,11 +47,13 @@
       <file leaf-file-name="BuildAKit.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/build-kit/src/Components/BuildAKit.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="83" column="0" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+            <state relative-caret-position="304">
+              <caret line="178" column="26" lean-forward="false" selection-start-line="178" selection-start-column="26" selection-end-line="178" selection-end-column="26" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
                 <element signature="n#!!block;n#renderOptionText#0;n#BuildAKit#0" expanded="false" />
+                <marker date="1509562071000" expanded="true" signature="4980:5074" ph="..." />
+                <marker date="1509562071000" expanded="true" signature="5100:5183" ph="..." />
               </folding>
             </state>
           </provider>
@@ -57,10 +62,11 @@
       <file leaf-file-name="BundleOptions.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build-kit/src/Components/BundleOptions.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1562">
-              <caret line="76" column="26" lean-forward="false" selection-start-line="76" selection-start-column="26" selection-end-line="76" selection-end-column="26" />
+            <state relative-caret-position="487">
+              <caret line="76" column="45" lean-forward="false" selection-start-line="76" selection-start-column="45" selection-end-line="76" selection-end-column="45" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
+                <marker date="1509562253000" expanded="true" signature="1645:1803" ph="..." />
               </folding>
             </state>
           </provider>
@@ -69,8 +75,8 @@
       <file leaf-file-name="BundleOption.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build-kit/src/Components/BundleOption.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="880">
-              <caret line="41" column="34" lean-forward="false" selection-start-line="41" selection-start-column="34" selection-end-line="41" selection-end-column="34" />
+            <state relative-caret-position="265">
+              <caret line="50" column="21" lean-forward="true" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
               </folding>
@@ -81,8 +87,8 @@
       <file leaf-file-name="build-kit-style.scss" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build-kit/src/build-kit-style.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6468">
-              <caret line="294" column="24" lean-forward="false" selection-start-line="294" selection-start-column="24" selection-end-line="294" selection-end-column="24" />
+            <state relative-caret-position="447">
+              <caret line="120" column="26" lean-forward="false" selection-start-line="120" selection-start-column="26" selection-end-line="120" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -148,12 +154,12 @@
         <option value="$PROJECT_DIR$/build-kit/package.json" />
         <option value="$PROJECT_DIR$/build-kit/src/Components/StartScreen.js" />
         <option value="$PROJECT_DIR$/build-kit/src/index.js" />
-        <option value="$PROJECT_DIR$/build-kit/src/build-kit-style.scss" />
         <option value="$PROJECT_DIR$/build-kit/src/Components/BundleView.js" />
-        <option value="$PROJECT_DIR$/build-kit/src/Components/BundleOptions.js" />
-        <option value="$PROJECT_DIR$/build-kit/src/Components/BundleOption.js" />
         <option value="$PROJECT_DIR$/build-kit/src/Components/App.js" />
+        <option value="$PROJECT_DIR$/build-kit/src/build-kit-style.scss" />
         <option value="$PROJECT_DIR$/build-kit/src/Components/BuildAKit.js" />
+        <option value="$PROJECT_DIR$/build-kit/src/Components/BundleOption.js" />
+        <option value="$PROJECT_DIR$/build-kit/src/Components/BundleOptions.js" />
       </list>
     </option>
   </component>
@@ -285,12 +291,12 @@
       <workItem from="1508736131465" duration="2162000" />
       <workItem from="1508792480021" duration="1682000" />
       <workItem from="1509027730022" duration="66723000" />
-      <workItem from="1509539253492" duration="8648000" />
+      <workItem from="1509539253492" duration="11656000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="170172000" />
+    <option name="totallyTimeSpent" value="173180000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="157" y="23" width="1034" height="773" extended-state="0" />
@@ -629,34 +635,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build-kit/src/build-kit-style.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6468">
-          <caret line="294" column="24" lean-forward="false" selection-start-line="294" selection-start-column="24" selection-end-line="294" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build-kit/src/Components/BundleOption.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="880">
-          <caret line="41" column="34" lean-forward="false" selection-start-line="41" selection-start-column="34" selection-end-line="41" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build-kit/src/Components/BundleOptions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1562">
-          <caret line="76" column="26" lean-forward="false" selection-start-line="76" selection-start-column="26" selection-end-line="76" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build-kit/src/Components/App.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
@@ -667,13 +645,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/build-kit/src/build-kit-style.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="447">
+          <caret line="120" column="26" lean-forward="false" selection-start-line="120" selection-start-column="26" selection-end-line="120" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build-kit/src/Components/BundleOption.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="50" column="21" lean-forward="true" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build-kit/src/Components/BundleOptions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="487">
+          <caret line="76" column="45" lean-forward="false" selection-start-line="76" selection-start-column="45" selection-end-line="76" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+            <marker date="1509562253000" expanded="true" signature="1645:1803" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/build-kit/src/Components/BuildAKit.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="83" column="0" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+        <state relative-caret-position="304">
+          <caret line="178" column="26" lean-forward="false" selection-start-line="178" selection-start-column="26" selection-end-line="178" selection-end-column="26" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
             <element signature="n#!!block;n#renderOptionText#0;n#BuildAKit#0" expanded="false" />
+            <marker date="1509562071000" expanded="true" signature="4980:5074" ph="..." />
+            <marker date="1509562071000" expanded="true" signature="5100:5183" ph="..." />
           </folding>
         </state>
       </provider>

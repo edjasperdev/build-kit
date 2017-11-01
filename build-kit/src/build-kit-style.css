@@ -95,6 +95,9 @@
     display: flex;
     max-height: 250px;
     align-items: center; }
+    .build-kit .product-list.disabled {
+      opacity: 0.8;
+      pointer-events: none; }
     .build-kit .product-list div.showContainer {
       margin-right: 30px;
       max-height: 300px;

@@ -68,12 +68,13 @@ class BundleOptions extends React.Component {
             return (
               <div
                 key={i}
-                className="kit-option-container"
+                className='kit-option-container'
                 style={{display: 'inline-block'}}>
                 {this.listOptions}
                 <BundleOption
                   product={product}
                   count={this.props.count}
+                  doneKit={this.props.doneKit}
                   countNumber={e => this.props.countNumber(product, e)}
                   handleOptionClick={e => this.handleClick(product, e)}
                   handleCancelClick={e => this.props.handleCancelClick(product, e)}/>

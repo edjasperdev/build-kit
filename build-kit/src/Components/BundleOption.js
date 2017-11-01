@@ -47,7 +47,7 @@ class BundleOption extends Component {
   }
 
   showKitCount () {
-    if (!this.state.selected) {
+    if (!this.state.selected && !this.props.doneKit) {
       this.setState({
         isHovered: true
       })
