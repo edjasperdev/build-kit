@@ -16,12 +16,6 @@ class BundleOptions extends React.Component {
     this.handleClick = this.handleClick.bind(this)
   }
 
-  products = [
-    {
-      title: 'Dope Taupe',
-      image1: 'https://cdn.shopify.com/s/files/1/1583/0411/files/Deep_Brown_Bare.jpg?8065515360427617192'
-    }
-  ]
 
   componentWillMount () {
     let {products} = this.props
@@ -30,10 +24,8 @@ class BundleOptions extends React.Component {
     })
   }
 
-  handleClick (count) {
-    console.log('options count', count)
-    console.log('options props', this.props)
-    this.props.optionClick(count)
+  handleClick (product) {
+    this.props.optionClick(product)
   }
 
   render () {
@@ -72,7 +64,7 @@ class BundleOptions extends React.Component {
     return (
       <div>
         {this.props.loading ? <p>Loading</p> : <Slider {...settings}>
-          {this.state.products.map((item, i) => {
+          {this.state.products.map((product, i) => {
             return (
               <div
                 key={i}
@@ -80,11 +72,11 @@ class BundleOptions extends React.Component {
                 style={{display: 'inline-block'}}>
                 {this.listOptions}
                 <BundleOption
-                  item={item}
+                  product={product}
                   count={this.props.count}
-                  countNumber={e => this.props.countNumber(item, e)}
-                  handleOptionClick={e => this.handleClick(item, e)}
-                  handleCancelClick={e => this.props.handleCancelClick(item, e)}/>
+                  countNumber={e => this.props.countNumber(product, e)}
+                  handleOptionClick={e => this.handleClick(product, e)}
+                  handleCancelClick={e => this.props.handleCancelClick(product, e)}/>
 
               </div>
             )

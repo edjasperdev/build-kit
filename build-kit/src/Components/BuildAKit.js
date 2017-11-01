@@ -18,16 +18,24 @@ class BuildAKit extends Component {
     this.handleOptionClick = this.handleOptionClick.bind(this)
     this.handleCancelClick = this.handleCancelClick.bind(this)
     this.showCount = this.showCount.bind(this)
+    this.getProducts = this.getProducts.bind(this)
+    // this.updateProductCache = this.updateProductCache.bind(this)
   }
 
   componentWillMount () {
-    let selectedState = localStorage.getItem('selectedState');
-    let kitState = localStorage.getItem('kitState');
-    if(selectedState){
-      this.setState({selected: JSON.parse(selectedState)})
-    }
+    this.getProducts()
+  }
+
+  getProducts () {
+    let kitState = localStorage.getItem('kitState') ? JSON.parse(localStorage.getItem('kitState')): null,
+        selected
     if(kitState){
-      this.setState({products: JSON.parse(kitState), loading: false})
+      selected = kitState
+        .filter((product) => product.selected.length > 0)
+        .sort((a,b) => {a.selected[0] > b.selected[0] })
+      console.log('filt and sort', selected)
+      this.setState({products: kitState, loading: false, selected})
+
     } else {
       let {products} = this.state
       this.props.client.fetchQueryProducts({collection_id: '484501000', sort_by: 'title-ascending'})
@@ -37,9 +45,10 @@ class BuildAKit extends Component {
               title: product.title,
               image1: product.images[0].src,
               image2: product.images[1].src,
-              productId: product.id
+              id: product.id,
+              selected: []
             })
-            localStorage.setItem('kitState', JSON.stringify(products));
+            localStorage.setItem('kitState', JSON.stringify(products))
             this.setState({products, loading: false})
           })
         })
@@ -62,6 +71,8 @@ class BuildAKit extends Component {
   handleCancelClick (item) {
     let {selected} = this.state
     let index = selected.indexOf(item)
+    // let updatedProducts = this.updateProductCache(item)
+    //start here
     if (selected.length === 1) {
       selected = []
     } else if (index > -1) {
@@ -95,37 +106,60 @@ class BuildAKit extends Component {
           count.push(index + 1)
         })
       }
-      console.log('count', count)
     }
-    console.log('count', count)
     return count
   }
-
-  handleOptionClick (count) {
-    let {selected} = this.state
-    console.log('kit count', count)
-    console.log('kit state', selected)
-
-    selected.push(count)
-    console.log('new state', selected)
-    this.setState({
-      selected
+  updateProductCache(item){
+    // let products = this.state.products
+    let products = JSON.parse(localStorage.getItem('kitState'))
+    console.log('kitstate',products)
+      products.map((product,i) => {
+      if (product.id === item.id) products[i] = item
     })
-    localStorage.setItem('selectedState', JSON.stringify(selected))
+    console.log('updatedProducts', products)
+    localStorage.setItem('kitState', JSON.stringify(products))
+    return products
+
+  }
+
+  handleOptionClick (item) {
+    // let products = JSON.parse(localStorage.getItem('kitState'))
+    // console.log('products', products)
+    let {selected} = this.state
+    item.selected.push(selected.length + 1)
+    selected.push(item)
+    let updatedProducts = this.updateProductCache(item)
+    console.log('updatedProducts handleOption', updatedProducts )
+    // console.log('selected', selected)
+    // let index = selected.indexOf(item)
+    //   products.map((product) => {
+    //     if (product.id === item.id) {
+    //       product.selected.push(index + 1)
+    //     }
+    //   })
+    // this.setState({
+    //   selected,
+    //   products: products
+    // })
+    this.setState({
+      selected,
+      products: updatedProducts
+    })
+    // localStorage.setItem('kitState', JSON.stringify(products))
+    // localStorage.setItem('selected', JSON.stringify(selected))
 
   }
 
   render () {
     let {selected} = this.state
-    console.log(selected)
     return (
       <div className='build-a-kit'>
         <BundleView
           numSelected={selected.length}
           showBuyButton={selected.length === 3}/>
         <div className="show-selected-option">
-          {selected.map((option, i) => {
-            return <p key={i}>{`${i + 1}. ${option.title}`}</p>
+          {selected.map((product, i) => {
+            return <p key={i}>{`${product.selected[0]}. ${product.title}`}</p>
           })}
         </div>
         <div className="product-list">
@@ -135,8 +169,8 @@ class BuildAKit extends Component {
           <BundleOptions
             loading={this.state.loading}
             products={this.state.products}
-            cancelOption={this.cancelClick}
-            toggleKitCount={() => this.handleHover()}
+            // cancelOption={this.cancelClick}
+            // toggleKitCount={() => this.handleHover()}
             showCount={this.state.showCount}
             count={this.state.selected.length + 1}
             countNumber={this.showCount}

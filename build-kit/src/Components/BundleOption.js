@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { isEmpty } from 'lodash'
 
 class BundleOption extends Component {
   constructor (props) {
@@ -10,6 +11,16 @@ class BundleOption extends Component {
       count: null,
       countNumber: null,
       selectedTwice: false,
+      selectedThrice: false
+    }
+  }
+
+  componentWillMount(){
+    if(!isEmpty(this.props.product.selected)){
+      this.setState({
+          selected: true,
+          countNumber: this.props.product.selected
+        })
     }
   }
 
@@ -19,19 +30,19 @@ class BundleOption extends Component {
     })
   }
 
-  handleClick (item) {
+  handleClick (product) {
     if (!this.state.selected) {
       this.setState({count: this.props.count, selected: true})
-      console.log('state', item, this.state.selected)
-      this.props.handleOptionClick(item)
+      console.log('state', product, this.state.selected)
+      this.props.handleOptionClick(product)
     }
   }
 
-  handleDuplicateClick (item) {
-    let count = this.props.countNumber(item)
+  handleDuplicateClick (product) {
+    let count = this.props.countNumber(product)
     if (this.state.selected) {
       this.setState({selectedTwice: true, selectedTwiceCount: count[1]})
-      this.props.handleOptionClick(item)
+      this.props.handleOptionClick(product)
     }
   }
 
@@ -63,7 +74,7 @@ class BundleOption extends Component {
     return style
   }
 
-  handleCancelClick (item) {
+  handleCancelClick (product) {
     let {countNumber} = this.state
     if (countNumber.length > 1) {
       this.setState({
@@ -78,24 +89,24 @@ class BundleOption extends Component {
         countNumber: [countNumber[0]]
       })
     }
-    this.props.handleCancelClick(item)
+    this.props.handleCancelClick(product)
 
   }
 
-  countNumber (item) {
-    let countNumber = this.props.countNumber(item)
+  countNumber (product) {
+    let countNumber = this.props.countNumber(product)
     this.setState({countNumber})
   }
 
   render () {
-    let {item, count} = this.props
-    let {countNumber, selected, selectedTwice, selectedTwiceCount} = this.state
+    let {product, count} = this.props
+    let {countNumber, selected, selectedTwice} = this.state
     return (
       <div>
         {this.state.selected ? <span className='close-button' onClick={() => this.handleCancelClick()}> X</span> : null}
         <div
           className={`kit-option ${this.state.selected ? 'selected' : ''}`}
-          onClick={(item) => this.handleClick(item)}
+          onClick={(product) => this.handleClick(product)}
           onMouseEnter={() => this.showKitCount()}
           onMouseLeave={() => this.hideKitCount()}
         >
@@ -110,9 +121,9 @@ class BundleOption extends Component {
 
         </div>
         <div className="info-text">
-          <p style={this.style} className='title'>{item.title}</p>
+          <p style={this.style} className='title'>{product.title}</p>
           {this.state.selected ?
-            <p onClick={(item) => this.handleDuplicateClick(item.title)} className='duplicate'>Duplicate?</p> : null}
+            <p onClick={(product) => this.handleDuplicateClick(product.title)} className='duplicate'>Duplicate?</p> : null}
         </div>
       </div>
     )
