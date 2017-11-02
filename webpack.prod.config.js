@@ -1,23 +1,22 @@
 const webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
-    entry: './wrapper.js',
+    entry: './BuildKit/Components/App.js',
     output: {
-        libraryTarget: 'var',
-        library: 'showBuildKit',
-        path: 'assets',
+        path: path.resolve(__dirname, 'assets'),
         filename: 'build-kit-min.js',
     },
     module: {
         loaders: [
             {
-                test: /\.js/,
-                loader: 'babel',
+                test: /\.js$/,
+                loader: 'babel-loader',
                 include: __dirname,
             },
             {
                 test: /\.scss$/,
-                loaders: ['style', 'css', 'sass']
+                loaders: 'style-loader!css-loader!sass-loader'
             },
         ],
     },

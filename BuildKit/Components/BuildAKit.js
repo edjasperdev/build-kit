@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import BundleOptions from './BundleOptions'
 import BundleView from './BundleView'
 import { isEmpty } from 'lodash'
+import {products} from './products'
 
 class BuildAKit extends Component {
   constructor (props) {
@@ -36,33 +37,26 @@ class BuildAKit extends Component {
     this.setState({products: products, loading: false, selected})
   }
 
+    addToCart(){
+      let {selected} = this.state
+        console.log('added to cart')
+        document.getElementById('option_1').value = selected[0].title
+        document.getElementById('option_2').value = selected[1].title
+        document.getElementById('option_3').value = selected[2].title
+        document.getElementById("add").click()
+    }
 
-  getProducts () {
+
+
+    getProducts () {
     let kitState = localStorage.getItem('kitState') ? JSON.parse(localStorage.getItem('kitState')): null
     //     selected
     if(kitState){
-    //   selected = kitState
-    //   //   .filter((product) => product.selected.length > 0)
-    //   //   .sort((a,b) => {a.selected[0] > b.selected[0] })
       this.setState({products: kitState, loading: false})
       localStorage.setItem('kitState', JSON.stringify(kitState))
       // this.updateState(kitState);
     } else {
-      let {products} = this.state
-      this.props.client.fetchQueryProducts({collection_id: '484501000', sort_by: 'title-ascending'})
-        .then((collection) => {
-          collection.map((product) => {
-            products.push({
-              title: product.title,
-              image1: product.images[0].src,
-              image2: product.images[1].src,
-              id: product.id,
-              selected: []
-            })
-            localStorage.setItem('kitState', JSON.stringify(products))
-            this.setState({products, loading: false})
-          })
-        })
+        this.setState({products: products, loading: false})
     }
   }
 
@@ -88,7 +82,6 @@ class BuildAKit extends Component {
       selected.splice(index, 1)
     }
 
-    console.log('new', selected)
     this.setState({selected})
   }
 
@@ -121,11 +114,9 @@ class BuildAKit extends Component {
   updateProductCache(item){
     // let products = this.state.products
     let products = JSON.parse(localStorage.getItem('kitState'))
-    console.log('kitstate',products)
       products.map((product,i) => {
       if (product.id === item.id) products[i] = item
     })
-    console.log('updatedProducts', products)
     localStorage.setItem('kitState', JSON.stringify(products))
     return products
 
@@ -133,11 +124,7 @@ class BuildAKit extends Component {
 
   handleOptionClick (item) {
     let {selected} = this.state
-    console.log('kit count', item)
-    console.log('kit state', selected)
-
     selected.push(item)
-    console.log('new state', selected)
     this.setState({
       selected
     })
@@ -160,13 +147,17 @@ class BuildAKit extends Component {
     let {selected} = this.state
     return (
       <div className='build-a-kit'>
-        <BundleView
+        <BundleView client={this.props.client}
+                    addToCart={() => this.addToCart()}
           numSelected={selected.length}
           showBuyButton={selected.length === 3}/>
         <div className="show-selected-option">
           {selected.map((option, i) => {
             return <p key={i}>{`${i + 1}. ${option.title}`}</p>
           })}
+        </div>
+        <div className={`buy-button-mobile ${selected.length === 3 ? 'enabled': ''}`}>
+          <button onClick={() => this.addToCart()}>Add Your Kit to Cart!</button>
         </div>
         <div className={`product-list ${selected.length === 3 ? 'disabled': ''}`}>
           <div className="showContainer">

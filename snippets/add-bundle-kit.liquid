@@ -1,0 +1,6 @@
+  <form style="display: none;" class="product-form" id="product-form" action="/cart/add" method="post" enctype="multipart/form-data" data-product-id="{{ product.id }}">           
+	<input type="hidden" name="id" value={{product.variants.first.id }} />
+		{{product.variants.first.id }}
+        {% comment %} This is the add-to-cart button {% endcomment %}
+	<button name="add" id="add" class="product-add">{{ 'products.product.add_to_cart_html' | t }}</button>
+  </form>

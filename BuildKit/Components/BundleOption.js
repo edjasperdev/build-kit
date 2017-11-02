@@ -11,8 +11,11 @@ class BundleOption extends Component {
       count: null,
       countNumber: null,
       selectedTwice: false,
-      selectedThrice: false
+      selectedThrice: false,
+        image1:this.props.product.image1,
+        image2:this.props.product.image2
     }
+    this.whichImage = this.whichImage.bind(this)
   }
 
   componentWillMount(){
@@ -25,6 +28,7 @@ class BundleOption extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
+    this.whichImage()
     this.setState({
       countNumber: this.props.countNumber(this)
     })
@@ -74,6 +78,18 @@ class BundleOption extends Component {
     return style
   }
 
+  whichImage(){
+    let {image1, image2 } = this.state
+      let style = {backgroundImage: `url(${image1}`}
+      if (this.state.selected) {
+          style = {backgroundImage: `url(${image2}`}
+      }
+      else if (this.state.isHovered) {
+          style = {backgroundImage: `url(${image2}`}
+      }
+      return style
+  }
+
   handleCancelClick (product) {
     let {countNumber} = this.state
     if (countNumber.length > 1) {
@@ -106,6 +122,7 @@ class BundleOption extends Component {
         {this.state.selected ? <span className='close-button' onClick={() => this.handleCancelClick()}> X</span> : null}
         <div
           className={`kit-option ${this.state.selected ? 'selected' : ''}`}
+          style={this.whichImage()}
           onClick={(product) => this.handleClick(product)}
           onMouseEnter={() => this.showKitCount()}
           onMouseLeave={() => this.hideKitCount()}

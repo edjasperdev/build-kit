@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import Lip1 from '../assets/PeachPleaseLip.jpg'
-import Lip2 from '../assets/BrownBareLip.jpg'
-import Lip3 from '../assets/BrandNudeLip.jpg'
+let Lip1 = 'https://cdn.shopify.com/s/files/1/1583/0411/files/PeachPleaseLip.jpg?18333247606503215986'
+let Lip2 = 'https://cdn.shopify.com/s/files/1/1583/0411/files/BrownBareLip.jpg?18333247606503215986'
+let Lip3 = 'https://cdn.shopify.com/s/files/1/1583/0411/files/BrandNudeLip.jpg?18333247606503215986'
 
 class BundleView extends Component {
   constructor (props) {
@@ -16,15 +16,16 @@ class BundleView extends Component {
     }
   }
 
+
   render () {
     return (
-      <div>
+      <div className="bundle-view">
         <div className="kit-image">
           <img src={Lip1} alt="" style={this.showStyle(1)}/>
           <img src={Lip2} alt="" style={this.showStyle(2)}/>
           <img src={Lip3} alt="" style={this.showStyle(3)}/>
         </div>
-        {this.props.showBuyButton ? <div className='buy-button'>Buy Now</div> : null}
+          {this.props.showBuyButton ? <div onClick={() => this.props.addToCart()}><button className='buy-button' >Add Kit to Cart!</button></div> : null}
       </div>
     )
   }
