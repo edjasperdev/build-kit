@@ -19,10 +19,13 @@ class BundleOption extends Component {
   }
 
   componentWillMount(){
+    console.log(this.props.product)
     if(!isEmpty(this.props.product.selected)){
       this.setState({
           selected: true,
+        selectedTwice: this.props.product.selected.length === 2,
           countNumber: this.props.product.selected
+
         })
     }
   }
@@ -96,16 +99,16 @@ class BundleOption extends Component {
       this.setState({
         selected: true,
         selectedTwice: false,
-        countNumber: [countNumber[0]]
+        countNumber: countNumber.pop()
       })
     } else {
       this.setState({
         selected: false,
         selectedTwice: false,
-        countNumber: [countNumber[0]]
+        countNumber: []
       })
     }
-    this.props.handleCancelClick(product)
+    // this.props.handleCancelClick(product)
 
   }
 
@@ -140,7 +143,7 @@ class BundleOption extends Component {
         <div className="info-text">
           <p style={this.style} className='title'>{product.title}</p>
           {this.state.selected ?
-            <p onClick={(product) => this.handleDuplicateClick(product.title)} className='duplicate'>Duplicate?</p> : null}
+            <p onClick={(product) => this.handleDuplicateClick(product.title)} className='duplicate'>Add Another</p> : null}
         </div>
       </div>
     )

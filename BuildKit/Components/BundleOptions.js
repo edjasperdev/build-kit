@@ -64,7 +64,7 @@ class BundleOptions extends React.Component {
     return (
       <div>
         {this.props.loading ? <p>Loading</p> : <Slider {...settings}>
-          {this.state.products.map((product, i) => {
+          {this.props.products.map((product, i) => {
             return (
               <div
                 key={i}
