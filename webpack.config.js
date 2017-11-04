@@ -1,10 +1,11 @@
 const webpack = require('webpack');
 var path = require('path');
 
-module.exports = {
+let config = {
     entry: './BuildKit/Components/App.js',
+
     output: {
-        path: path.resolve(__dirname, 'assets'),
+        path: path.resolve(__dirname),
         filename: 'build-kit.js',
     },
     module: {
@@ -20,16 +21,10 @@ module.exports = {
             },
         ],
     },
-    plugins: [
-        new webpack.DefinePlugin({
-            'process.env': {
-                'NODE_ENV': JSON.stringify('production')
-            }
-        })
-    ],
-}
-;
 
+}
+
+module.exports = config
 
 // var path = require('path');
 //

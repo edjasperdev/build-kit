@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import BundleOptions from './BundleOptions'
 import BundleView from './BundleView'
 import { isEmpty } from 'lodash'
-import {products} from './products'
+// import {products} from './products'
 
 class BuildAKit extends Component {
   constructor (props) {
@@ -12,21 +12,28 @@ class BuildAKit extends Component {
       selected: [],
       showCount: true,
       showBuyButton: false,
-      products: [],
-      loading: true
+      loading: this.props.loading
 
     }
     this.handleOptionClick = this.handleOptionClick.bind(this)
     this.handleCancelClick = this.handleCancelClick.bind(this)
     this.showCount = this.showCount.bind(this)
-    this.getProducts = this.getProducts.bind(this)
+    // this.getProducts = this.getProducts.bind(this)
     this.updateState = this.updateState.bind(this)
     // this.updateProductCache = this.updateProductCache.bind(this)
   }
 
   componentWillMount () {
-    this.getProducts()
+    let {products} = this.props
+    let {selected} = this.state
+    products.map((product)=>{
+      if(product.selected.length > 2 ){
+         selected.push(product)
+      }
+      return product
+    })
   }
+
 
 
 
@@ -39,6 +46,9 @@ class BuildAKit extends Component {
 
     addToCart(){
       let {selected} = this.state
+      let {products} = this.props
+      sessionStorage.setItem('selected', JSON.stringify(selected))
+      sessionStorage.setItem('products', JSON.stringify(products))
         console.log('added to cart')
         document.getElementById('option_1').value = selected[0].title
         document.getElementById('option_2').value = selected[1].title
@@ -48,40 +58,35 @@ class BuildAKit extends Component {
 
 
 
-    getProducts () {
-    let kitState = localStorage.getItem('kitState') ? JSON.parse(localStorage.getItem('kitState')): null
-    //     selected
-    if(kitState){
-      this.setState({products: kitState, loading: false})
-      localStorage.setItem('kitState', JSON.stringify(kitState))
-      // this.updateState(kitState);
-    } else {
-        this.setState({products: products, loading: false})
-    }
-  }
+
 
   renderOptionText () {
     let {selected} = this.state
     if (selected.length == 0) {
-      return 'Choose Your First Shade'
+      return 'First Shade'
     } else if (selected.length == 1) {
-      return 'Choose Your Second Shade'
-    } else if (selected.length == 2) {
-      return 'Choose Your Third Shade'
-    } else {
-      return 'Congrats! You\'ve made a beautiful kit'
+      return 'Second Shade'
+    } else{
+      return 'Third Shade'
     }
   }
 
   handleCancelClick (item) {
     let {selected} = this.state
     let index = selected.indexOf(item)
+    let {products} = this.props
+    products.map((product) => {
+      if(product.title === item.title) {
+        product.selected.pop()
+      }
+      return product
+    })
     if (selected.length === 1) {
       selected = []
     } else if (index > -1) {
       selected.splice(index, 1)
     }
-
+    this.props.updateProducts(products)
     this.setState({selected})
   }
 
@@ -111,8 +116,8 @@ class BuildAKit extends Component {
     }
     return count
   }
+
   updateProductCache(item){
-    // let products = this.state.products
     let products = JSON.parse(localStorage.getItem('kitState'))
       products.map((product,i) => {
       if (product.id === item.id) products[i] = item
@@ -124,6 +129,14 @@ class BuildAKit extends Component {
 
   handleOptionClick (item) {
     let {selected} = this.state
+    let {products} = this.props
+    products.map((product) => {
+      if(product.title === item.title) {
+        product.selected.push(selected.length + 1)
+      }
+      return product
+    })
+    this.props.updateProducts(products)
     selected.push(item)
     this.setState({
       selected
@@ -146,7 +159,7 @@ class BuildAKit extends Component {
   render () {
     let {selected} = this.state
     return (
-      <div className='build-a-kit'>
+      <div className={`build-a-kit ${this.props.loading ? '': 'show'}`}>
         <BundleView client={this.props.client}
                     addToCart={() => this.addToCart()}
           numSelected={selected.length}
@@ -165,7 +178,7 @@ class BuildAKit extends Component {
           </div>
           <BundleOptions
             loading={this.state.loading}
-            products={this.state.products}
+            products={this.props.products}
             // cancelOption={this.cancelClick}
             doneKit={selected.length === 3}
             // toggleKitCount={() => this.handleHover()}
