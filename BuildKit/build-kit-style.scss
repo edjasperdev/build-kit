@@ -2,6 +2,14 @@ $primary-color: #00558B;
 $slick-arrow-color: $primary-color;
 
 /*build-a-kit styling*/
+#screen{
+  opacity: 1;
+  transition: opacity 1000ms ease;
+  &.start{
+    opacity: .5;
+  }
+
+}
 .build-kit {
   display: flex;
   flex-direction: column;

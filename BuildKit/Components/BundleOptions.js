@@ -4,6 +4,7 @@ import Slider from 'react-slick'
 // import 'slick-carousel/slick/slick-theme.css'
 // import 'slick-carousel/slick/slick.css'
 import BundleOption from './BundleOption'
+import { findIndex, findLastIndex, pullAt } from 'lodash'
 
 class BundleOptions extends React.Component {
 
@@ -25,7 +26,31 @@ class BundleOptions extends React.Component {
   }
 
   handleClick (product) {
+    this.getThisCount(product)
     this.props.optionClick(product)
+  }
+
+  getThisCount(product){
+    return this.getAllIndexes(this.props.selected, product.title)
+  }
+
+  getAllIndexes (arr, val) {
+    let indexes = []
+    arr.map((e,i) => {
+      if(e.title === val.title)
+      indexes.push(i)
+    })
+    return indexes
+  }
+
+  isSelected(product){
+    let {selected} = this.props
+    let indexes = this.getAllIndexes(selected, product)
+    // indexes.map((index) => index + 1)
+    if(indexes.length > 0) {
+      return indexes
+    }
+    console.log('isSelected', product.title, indexes, indexes.length)
   }
 
   render () {
@@ -73,10 +98,16 @@ class BundleOptions extends React.Component {
                 {this.listOptions}
                 <BundleOption
                   product={product}
-                  count={this.props.count}
+                  thisCount={this.isSelected(product) ? this.isSelected(product) : null}
+                  // thisSecondCount={}
+                  // productIndex={this.isSelected(product)}
+                  nextCount={this.props.selected.length < 4 ? this.props.selected.length + 1 : null}
+                  handleOptionClick={e => this.props.optionClick(product,e)}
+
+
                   doneKit={this.props.doneKit}
                   countNumber={e => this.props.countNumber(product, e)}
-                  handleOptionClick={e => this.handleClick(product, e)}
+
                   handleCancelClick={e => this.props.handleCancelClick(product, e)}/>
 
               </div>

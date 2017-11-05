@@ -11,20 +11,22 @@ class BundleOption extends Component {
       count: null,
       countNumber: null,
       selectedTwice: false,
+      selectedTwiceCount:null,
       selectedThrice: false,
         image1:this.props.product.image1,
         image2:this.props.product.image2
     }
     this.whichImage = this.whichImage.bind(this)
+    this.handleDuplicateClick = this.handleDuplicateClick.bind(this)
   }
 
   componentWillMount(){
-    console.log(this.props.product)
-    if(!isEmpty(this.props.product.selected)){
+    let { thisCount } = this.props
+    if(thisCount && thisCount.length > 0){
       this.setState({
           selected: true,
-        selectedTwice: this.props.product.selected.length === 2,
-          countNumber: this.props.product.selected
+          selectedTwice: thisCount.length > 1,
+          secondTwiceCount: thisCount.length > 1 ? this.props.thisCount[1] : null
 
         })
     }
@@ -32,24 +34,27 @@ class BundleOption extends Component {
 
   componentWillReceiveProps (nextProps) {
     this.whichImage()
-    this.setState({
-      countNumber: this.props.countNumber(this)
-    })
+    // secondTwiceCount: this.props.thisCount.length > 1 ? this.props.thisCount[1]
+    // this.setState({
+    //   countNumber: this.props.countNumber(this)
+    // })
   }
 
   handleClick (product) {
-    if (!this.state.selected) {
-      this.setState({count: this.props.count, selected: true})
-      console.log('state', product, this.state.selected)
+    if (!this.state.selected){
+      this.setState({selected: true})
       this.props.handleOptionClick(product)
     }
   }
 
   handleDuplicateClick (product) {
-    let count = this.props.countNumber(product)
+    // let secondTwiceCount = this.props.productIndex[1]
+    this.props.handleOptionClick(product)
     if (this.state.selected) {
-      this.setState({selectedTwice: true, selectedTwiceCount: count[1]})
-      this.props.handleOptionClick(product)
+      this.setState({
+        selectedTwice: true,
+        selectedTwiceCount: this.props.thisCount[1]
+      })
     }
   }
 
@@ -94,21 +99,19 @@ class BundleOption extends Component {
   }
 
   handleCancelClick (product) {
-    let {countNumber} = this.state
-    if (countNumber.length > 1) {
+    let {thisCount} = this.props
+    if (thisCount.length > 1) {
       this.setState({
         selected: true,
-        selectedTwice: false,
-        countNumber: countNumber.pop()
+        selectedTwice: false
       })
     } else {
       this.setState({
         selected: false,
         selectedTwice: false,
-        countNumber: []
       })
     }
-    // this.props.handleCancelClick(product)
+    this.props.handleCancelClick(product)
 
   }
 
@@ -118,8 +121,10 @@ class BundleOption extends Component {
   }
 
   render () {
-    let {product, count} = this.props
-    let {countNumber, selected, selectedTwice} = this.state
+    let {thisCount, product, nextCount} = this.props
+    let {selected, selectedTwice} = this.state
+    let firstCount = thisCount ? parseFloat(thisCount[0]) + 1 : null
+    let secondCount = thisCount ? parseFloat(thisCount[1]) + 1 : null
     return (
       <div>
         {this.state.selected ? <span className='close-button' onClick={() => this.handleCancelClick()}> X</span> : null}
@@ -134,8 +139,8 @@ class BundleOption extends Component {
           {/*<div style={{opacity: 100}} className="show-count"><p>{item}</p></div>*/}
 
           <div className={`option ${this.showCount()}`}>
-            <p>{selected ? countNumber[0] : count}</p>
-            {selected && selectedTwice ? <p>{countNumber[1]}</p> : null}
+            <p>{selected ? firstCount : nextCount}</p>
+            {selected && selectedTwice ? <p>{secondCount}</p> : null}
           </div>
 
 
