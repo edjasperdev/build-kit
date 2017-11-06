@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import '../build-kit-style.scss'
-import {products} from './products'
+import { products } from './products'
 import StartScreen from './StartScreen'
 import BuildAKit from './BuildAKit'
-
 
 class App extends Component {
   constructor (props) {
@@ -15,123 +14,27 @@ class App extends Component {
     }
   }
 
-  // componentWillReceiveProps(nextProps){
-  //   let element = document.getElementById("screen")
-  //   document.getElementById("screen").addEventListener("transitionend",( e ) => {
-  //     element.classList.remove('start')
-  //   })
-  // }
-
-  // componentWillMount () {
-  //   let selected = JSON.parse(sessionStorage.getItem('selected'))
-  //   console.log(selected)
-  //   let selectedState = []
-  //   if (selected) {
-  //     debugger
-  //     products.map((product) => {
-  //       selected.map((choice, i) => {
-  //         let selectedArray = choice.selected.map((select) => select)
-  //         if(product.title === choice.title) {
-  //           product.selected = selectedArray
-  //         }
-  //       })
-  //       return product
-  //     })
-  //     console.log(selected)
-  //
-  //     this.setState({
-  //       startScreen: false,
-  //       loading: false,
-  //       products: products,
-  //       selected: selected
-  //     })
-  //   } else {
-  //     this.setState({products: products, loading: false})
-  //   }
-  // }
-  // updateProducts(products){
-  //
-  //   this.setState({
-  //     products
-  //   })
-  // }
-
+  componentWillMount () {
+    let selected = JSON.parse(sessionStorage.getItem('selected'))
+    if (selected) {
+      this.setState({
+        startScreen: false,
+        loading: false,
+      })
+    }
+  }
 
   handleStartClick () {
     document.getElementById('screen').classList.add('start')
-    let element = document.getElementById("screen")
-    document.getElementById("screen").addEventListener("transitionend",( e ) => {
+    let element = document.getElementById('screen')
+    document.getElementById('screen').addEventListener('transitionend', (e) => {
       element.classList.remove('start')
     })
     setTimeout(() => {
       this.setState({startScreen: false})
-    }, 1000);
+    }, 1000)
 
   }
-
-  // getAllIndexes (arr, val) {
-  //   var indexes = [], i = -1
-  //   while ((i = arr.indexOf(val, i + 1)) != -1) {
-  //     indexes.push(i)
-  //   }
-  //   return indexes
-  // }
-  //
-  // showCount (item) {
-  //   let {selected} = this.state
-  //   let count = []
-  //   if (isEmpty(selected)) {
-  //     count = [1]
-  //   }
-  //   else {
-  //     let indexes = this.getAllIndexes(selected, item)
-  //     if (indexes.length === 1) {
-  //       count.push(selected.indexOf(item) + 1)
-  //     } else {
-  //       indexes.map((index) => {
-  //         count.push(index + 1)
-  //       })
-  //     }
-  //   }
-  //   return count
-  // }
-  //
-  // handleOptionClick (item) {
-  //   let {selected} = this.state
-  //   let {products} = this.props
-  //   products.map((product) => {
-  //     if(product.title === item.title) {
-  //       product.selected.push(selected.length + 1)
-  //     }
-  //     return product
-  //   })
-  //   this.props.updateProducts(products)
-  //   selected.push(item)
-  //   this.setState({
-  //     selected
-  //   })
-  //
-  // }
-  //
-  // handleCancelClick (item) {
-  //   console.log('selected', item)
-  //   let {selected} = this.state
-  //   let index = selected.indexOf(item)
-  //   let {products} = this.props
-  //   products.map((product) => {
-  //     if(product.title === item.title) {
-  //       product.selected.pop()
-  //     }
-  //     return product
-  //   })
-  //   if (selected.length === 1) {
-  //     selected = []
-  //   } else if (index > -1) {
-  //     selected.splice(index, 1)
-  //   }
-  //   this.updateProducts(products)
-  //   this.setState({selected})
-  // }
 
   renderScreen () {
     if (this.state.startScreen) {

@@ -1,10 +1,7 @@
 import React from 'react'
 
 import Slider from 'react-slick'
-// import 'slick-carousel/slick/slick-theme.css'
-// import 'slick-carousel/slick/slick.css'
 import BundleOption from './BundleOption'
-import { findIndex, findLastIndex, pullAt } from 'lodash'
 
 class BundleOptions extends React.Component {
 
@@ -16,7 +13,6 @@ class BundleOptions extends React.Component {
     }
     this.handleClick = this.handleClick.bind(this)
   }
-
 
   componentWillMount () {
     let {products} = this.props
@@ -30,32 +26,28 @@ class BundleOptions extends React.Component {
     this.props.optionClick(product)
   }
 
-  getThisCount(product){
+  getThisCount (product) {
     return this.getAllIndexes(this.props.selected, product.title)
   }
 
   getAllIndexes (arr, val) {
     let indexes = []
-    arr.map((e,i) => {
-      if(e.title === val.title)
-      indexes.push(i)
+    arr.map((e, i) => {
+      if (e.title === val.title)
+        indexes.push(i)
     })
     return indexes
   }
 
-  isSelected(product){
+  isSelected (product) {
     let {selected} = this.props
     let indexes = this.getAllIndexes(selected, product)
-    // indexes.map((index) => index + 1)
-    if(indexes.length > 0) {
+    if (indexes.length > 0) {
       return indexes
     }
-    console.log('isSelected', product.title, indexes, indexes.length)
   }
 
   render () {
-    let {products} = this.props
-    console.log('bundle', products)
     let settings = {
       speed: 500,
       slidesToShow: 5,
@@ -95,14 +87,11 @@ class BundleOptions extends React.Component {
                 key={i}
                 className='kit-option-container'
                 style={{display: 'inline-block'}}>
-                {this.listOptions}
                 <BundleOption
                   product={product}
                   thisCount={this.isSelected(product) ? this.isSelected(product) : null}
-                  // thisSecondCount={}
-                  // productIndex={this.isSelected(product)}
                   nextCount={this.props.selected.length < 4 ? this.props.selected.length + 1 : null}
-                  handleOptionClick={e => this.props.optionClick(product,e)}
+                  handleOptionClick={e => this.props.optionClick(product, e)}
 
 
                   doneKit={this.props.doneKit}

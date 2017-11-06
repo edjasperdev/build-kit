@@ -20,6 +20,7 @@
     "file-loader": "^1.1.5",
     "gifsicle": "^3.0.4",
     "global": "^4.3.2",
+    "image-webpack-loader": "^3.4.2",
     "lodash": "^4.17.4",
     "node-sass-chokidar": "^0.0.3",
     "npm-run-all": "^4.1.1",

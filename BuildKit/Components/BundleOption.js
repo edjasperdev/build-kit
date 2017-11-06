@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { isEmpty } from 'lodash'
 
 class BundleOption extends Component {
   constructor (props) {
@@ -11,44 +10,38 @@ class BundleOption extends Component {
       count: null,
       countNumber: null,
       selectedTwice: false,
-      selectedTwiceCount:null,
+      selectedTwiceCount: null,
       selectedThrice: false,
-        image1:this.props.product.image1,
-        image2:this.props.product.image2
+      image1: this.props.product.image1,
+      image2: this.props.product.image2
     }
     this.whichImage = this.whichImage.bind(this)
     this.handleDuplicateClick = this.handleDuplicateClick.bind(this)
   }
 
-  componentWillMount(){
-    let { thisCount } = this.props
-    if(thisCount && thisCount.length > 0){
+  componentWillMount () {
+    let {thisCount} = this.props
+    if (thisCount && thisCount.length > 0) {
       this.setState({
-          selected: true,
-          selectedTwice: thisCount.length > 1,
-          secondTwiceCount: thisCount.length > 1 ? this.props.thisCount[1] : null
-
-        })
+        selected: true,
+        selectedTwice: thisCount.length > 1,
+        secondTwiceCount: thisCount.length > 1 ? this.props.thisCount[1] : null
+      })
     }
   }
 
   componentWillReceiveProps (nextProps) {
     this.whichImage()
-    // secondTwiceCount: this.props.thisCount.length > 1 ? this.props.thisCount[1]
-    // this.setState({
-    //   countNumber: this.props.countNumber(this)
-    // })
   }
 
   handleClick (product) {
-    if (!this.state.selected){
+    if (!this.state.selected) {
       this.setState({selected: true})
       this.props.handleOptionClick(product)
     }
   }
 
   handleDuplicateClick (product) {
-    // let secondTwiceCount = this.props.productIndex[1]
     this.props.handleOptionClick(product)
     if (this.state.selected) {
       this.setState({
@@ -86,16 +79,16 @@ class BundleOption extends Component {
     return style
   }
 
-  whichImage(){
-    let {image1, image2 } = this.state
-      let style = {backgroundImage: `url(${image1}`}
-      if (this.state.selected) {
-          style = {backgroundImage: `url(${image2}`}
-      }
-      else if (this.state.isHovered) {
-          style = {backgroundImage: `url(${image2}`}
-      }
-      return style
+  whichImage () {
+    let {image1, image2} = this.state
+    let style = {backgroundImage: `url(${image1}`}
+    if (this.state.selected) {
+      style = {backgroundImage: `url(${image2}`}
+    }
+    else if (this.state.isHovered) {
+      style = {backgroundImage: `url(${image2}`}
+    }
+    return style
   }
 
   handleCancelClick (product) {
@@ -135,9 +128,6 @@ class BundleOption extends Component {
           onMouseEnter={() => this.showKitCount()}
           onMouseLeave={() => this.hideKitCount()}
         >
-
-          {/*<div style={{opacity: 100}} className="show-count"><p>{item}</p></div>*/}
-
           <div className={`option ${this.showCount()}`}>
             <p>{selected ? firstCount : nextCount}</p>
             {selected && selectedTwice ? <p>{secondCount}</p> : null}
@@ -148,7 +138,8 @@ class BundleOption extends Component {
         <div className="info-text">
           <p style={this.style} className='title'>{product.title}</p>
           {this.state.selected ?
-            <p onClick={(product) => this.handleDuplicateClick(product.title)} className='duplicate'>Add Another</p> : null}
+            <p onClick={(product) => this.handleDuplicateClick(product.title)} className='duplicate'>Add
+              Another</p> : null}
         </div>
       </div>
     )
