@@ -38,7 +38,7 @@ export let products = [
   {
     title: 'Nude LaLa',
     image1: '//cdn.shopify.com/s/files/1/1583/0411/products/NudeLaLa0418_rt_large.jpg?v=1487712885',
-    image2: '//cdn.shopify.com/s/files/1/1583/0411/products/Edited_Nude_La_La_large.jpg?v=1487712885',
+    image2: '//cdn.shopify.com/s/files/1/1583/0411/files/Edited_Nude_La_La.jpg?17179014950116231625',
     selected: []
   },
   {
@@ -50,7 +50,7 @@ export let products = [
   {
     title: 'Pretty in Pink',
     image1: '//cdn.shopify.com/s/files/1/1583/0411/products/PiP_Ashanti_large.jpg?v=1487713212',
-    image2: '//cdn.shopify.com/s/files/1/1583/0411/products/Edited_Pretty_in_Pink_large.jpg?v=1487713212',
+    image2: 'https://cdn.shopify.com/s/files/1/1583/0411/files/Edited_Pretty_in_Pink.jpg?17179014950116231625',
     selected: []
   }
 ]

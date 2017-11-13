@@ -43,6 +43,7 @@ $slick-arrow-color: $primary-color;
       div.start-button {
         opacity: 1;
         pointer-events: auto;
+        background-color: #c67300;;
       }
     }
     .start-image {
@@ -52,7 +53,7 @@ $slick-arrow-color: $primary-color;
       background-image: url('https://cdn.shopify.com/s/files/1/1583/0411/files/Grp-1_ad7ce715-c46f-46c5-93b0-e8c4f98a88c9.jpg?8054129494557179759');
       background-size: cover;
       background-position: center;
-      transition: opacity 300ms ease;
+      transition: all 300ms ease;
 
       @media only screen and (max-width: 768px) {
         width: 535px;
@@ -79,8 +80,8 @@ $slick-arrow-color: $primary-color;
       border-radius: 50%;
       transform: translate(50%, -50%);
       transition: opacity 300ms ease;
-      @media only screen and (min-device-width: 1025px) {
-        opacity: 0;
+      @media only screen and (min-device-width: 1025px){
+        //opacity: 0;
         pointer-events: none;
         cursor: pointer;
       }

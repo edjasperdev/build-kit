@@ -25,11 +25,11 @@ class App extends Component {
   }
 
   handleStartClick () {
-    document.getElementById('screen').classList.add('start')
-    let element = document.getElementById('screen')
-    document.getElementById('screen').addEventListener('transitionend', (e) => {
-      element.classList.remove('start')
-    })
+    // document.getElementById('screen').classList.add('start')
+    // let element = document.getElementById('screen')
+    // document.getElementById('screen').addEventListener('transitionend', (e) => {
+    //   element.classList.remove('start')
+    // })
     setTimeout(() => {
       this.setState({startScreen: false})
     }, 1000)
@@ -49,13 +49,9 @@ class App extends Component {
   render () {
     return (
       <div className="build-kit">
-        <h1>Build Your Own Kit $45</h1>
-        <article>Subtext description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Etiam bibendum nunc et nulla euismod vestibulum. Sed dictum congue auctor.
-        </article>
-        <div id='screen'>
-          {this.renderScreen()}
-        </div>
+        <h1>Build Your Own Lipstick Trio $45</h1>
+        <article>Customize your perfect set of three lipsticks from our nine shade collection.</article>
+        {this.renderScreen()}
       </div>
     )
   }
