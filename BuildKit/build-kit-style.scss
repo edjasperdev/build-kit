@@ -277,9 +277,13 @@ $slick-arrow-color: $primary-color;
       max-width: 850px;
       .slick-prev {
         left: -225px;
+        margin-left: 0 !important;
+        opacity: 1 !important;
       }
       .slick-next {
         right: -25px;
+        margin-right: 0 !important;
+        opacity: 1 !important;
       }
       div.slick-list {
         top: 24px;
