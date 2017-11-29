@@ -81,12 +81,12 @@ class BundleOption extends Component {
 
   whichImage () {
     let {image1, image2} = this.state
-    let style = {backgroundImage: `url(${image1}`}
+    let style = {backgroundImage: `url(${image1})`}
     if (this.state.selected) {
-      style = {backgroundImage: `url(${image2}`}
+      style = {backgroundImage: `url(${image2})`}
     }
     else if (this.state.isHovered) {
-      style = {backgroundImage: `url(${image2}`}
+      style = {backgroundImage: `url(${image2})`}
     }
     return style
   }

@@ -253,6 +253,7 @@ $slick-arrow-color: $primary-color;
       margin-right: 30px;
       max-height: 300px;
       min-height: 230px;
+      height: 100px;
       display: flex;
       align-items: center;
       .showList {
@@ -276,6 +277,7 @@ $slick-arrow-color: $primary-color;
       margin: 0;
       max-width: 850px;
       .slick-prev {
+        pointer-events: auto !important;
         left: -225px;
         margin-left: 0 !important;
         opacity: 1 !important;
@@ -284,6 +286,7 @@ $slick-arrow-color: $primary-color;
         right: -25px;
         margin-right: 0 !important;
         opacity: 1 !important;
+        pointer-events: auto !important;
       }
       div.slick-list {
         top: 24px;
@@ -535,9 +538,9 @@ $slick-arrow-color: $primary-color;
           p {
             margin: 0;
             width: 60px;
-            line-height: 10px;
+            line-height: 14px;
             color: white;
-            font-size: 10px;
+            font-size: 14px;
           }
         }
       }
