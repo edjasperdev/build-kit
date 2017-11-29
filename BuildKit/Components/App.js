@@ -49,8 +49,9 @@ class App extends Component {
   render () {
     return (
       <div className="build-kit">
-        <h1>Build Your Own Lipstick Trio $45</h1>
+        <h1>Build Your Own Lipstick Trio</h1>
         <article>Customize your perfect set of three lipsticks from our nine shade collection.</article>
+        <article>$45</article>
         {this.renderScreen()}
       </div>
     )

@@ -38,6 +38,16 @@ class BuildAKit extends Component {
       products
     })
   }
+  componentDidMount(){
+    document.querySelector('.product-list').scrollIntoView({
+      behavior: 'smooth'
+    });
+    // window.scroll({
+    //   top: 800,
+    //   left: 0,
+    //   behavior: 'smooth'
+    // });
+  }
 
   addToCart () {
     let {selected} = this.state
